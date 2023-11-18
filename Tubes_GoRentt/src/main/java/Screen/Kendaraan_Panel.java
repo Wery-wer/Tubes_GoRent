@@ -213,6 +213,7 @@ public class Kendaraan_Panel extends javax.swing.JFrame {
         getContentPane().add(jButton1, gridBagConstraints);
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
