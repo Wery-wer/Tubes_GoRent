@@ -8,6 +8,62 @@ package Model;
  *
  * @author Holanta
  */
-public class Kendaraan {
+public abstract class Kendaraan {
+    private String merek;
+    private String harga_sewa;
+    private boolean ketersediaan;
+    private String id_kendaraan;
+    private String transmisi;
+
+    public Kendaraan(String merek, String harga_sewa, boolean ketersediaan, String id_kendaraan, String transmisi) {
+        this.merek = merek;
+        this.harga_sewa = harga_sewa;
+        this.ketersediaan = ketersediaan;
+        this.id_kendaraan = id_kendaraan;
+        this.transmisi = transmisi;
+    }
+
     
+    
+    public String getMerek() {
+        return merek;
+    }
+
+    public void setMerek(String merek) {
+        this.merek = merek;
+    }
+
+    public String getHarga_sewa() {
+        return harga_sewa;
+    }
+
+    public void setHarga_sewa(String harga_sewa) {
+        this.harga_sewa = harga_sewa;
+    }
+
+    public boolean isKetersediaan() {
+        return ketersediaan;
+    }
+
+    public void setKetersediaan(boolean ketersediaan) {
+        this.ketersediaan = ketersediaan;
+    }
+
+    public String getId_kendaraan() {
+        return id_kendaraan;
+    }
+
+    public void setId_kendaraan(String id_kendaraan) {
+        this.id_kendaraan = id_kendaraan;
+    }
+
+    public String getTransmisi() {
+        return transmisi;
+    }
+
+    public void setTransmisi(String transmisi) {
+        this.transmisi = transmisi;
+    }
+    
+    public abstract void addAsuransi();
 }

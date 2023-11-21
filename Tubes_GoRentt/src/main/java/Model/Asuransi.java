@@ -8,6 +8,6 @@ package Model;
  *
  * @author Holanta
  */
-public class Asuransi {
+public interface Asuransi {
     
 }
