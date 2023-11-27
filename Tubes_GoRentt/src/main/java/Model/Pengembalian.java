@@ -52,4 +52,8 @@ public class Pengembalian {
         this.pembayaran = new Pembayaran();
         
     }
+    
+    public boolean cek_status_bayar(){
+        return this.pembayaran.getStatus_bayar();
+    }
 }
