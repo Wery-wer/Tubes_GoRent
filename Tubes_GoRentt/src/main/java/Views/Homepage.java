@@ -4,16 +4,20 @@
  */
 package Views;
 
+import Data.ScreenData;
+
 /**
  *
  * @author Holanta
  */
 public class Homepage extends javax.swing.JPanel {
-
+    ScreenData sd = new ScreenData();
     /**
      * Creates new form Homepage
      */
     public Homepage() {
+        sd.setarrMobil();
+        sd.setDefaultTableModel();
         initComponents();
     }
 
@@ -69,6 +73,8 @@ public class Homepage extends javax.swing.JPanel {
 
         jLabel2.setText("Data Ketersediaan Kendaraan");
 
+        jTable1.setModel(sd.tabeltersedia
+        );
         jTable1.setRowHeight(30);
         jTable1.setShowGrid(true);
         jScrollPane1.setViewportView(jTable1);
