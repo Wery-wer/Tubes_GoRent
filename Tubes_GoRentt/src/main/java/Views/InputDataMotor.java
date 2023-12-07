@@ -8,12 +8,12 @@ package Views;
  *
  * @author Holanta
  */
-public class Homepage extends javax.swing.JPanel {
+public class InputDataMotor extends javax.swing.JPanel {
 
     /**
-     * Creates new form Homepage
+     * Creates new form InputDataMobil
      */
-    public Homepage() {
+    public InputDataMotor() {
         initComponents();
     }
 
@@ -30,11 +30,11 @@ public class Homepage extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 933, Short.MAX_VALUE)
+            .addGap(0, 1012, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 615, Short.MAX_VALUE)
+            .addGap(0, 613, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
