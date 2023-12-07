@@ -5,6 +5,7 @@
 package Data;
 
 import Model.Mobil;
+import Model.Motor;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -52,5 +53,41 @@ public class Save {
         }catch(Exception e){
             System.out.println(e.getMessage());
         }
+    }
+    
+    public void writemtr(ArrayList<Motor> m){
+        File fm = new File("E:/PBO/test/Tubes_GoRent/Tubes_GoRentt/data/motor.data");
+        try {
+            if(!fm.exists()){
+                fm.createNewFile();
+            }else{
+                FileOutputStream fos = new FileOutputStream(fm);
+                ObjectOutputStream oos = new ObjectOutputStream(fos);
+                oos.writeObject(m);
+                oos.close();
+                fos.close();
+                System.out.println("sukses");
+            }
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+    
+    public ArrayList<Motor> readmtr(){
+        File fm = new File("E:/PBO/test/Tubes_GoRent/Tubes_GoRentt/data/motor.data");
+        ArrayList<Motor> output = new ArrayList<Motor>();
+    
+        try{
+            FileInputStream fis = new FileInputStream(fm);
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            ArrayList<Motor> m = (ArrayList<Motor>)ois.readObject();
+            
+            for (Motor motor : m){
+                output.add(motor);
+            }
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+        return output;
     }
 }

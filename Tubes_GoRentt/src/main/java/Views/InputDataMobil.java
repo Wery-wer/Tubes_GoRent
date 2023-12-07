@@ -4,16 +4,22 @@
  */
 package Views;
 
+import Data.Save;
+import Data.ScreenData;
+import Model.Mobil;
+
 /**
  *
  * @author User
  */
 public class InputDataMobil extends javax.swing.JPanel {
-
+    ScreenData sd = new ScreenData();
+    Save s = new Save();
     /**
      * Creates new form InputDataMobil
      */
     public InputDataMobil() {
+        
         initComponents();
     }
 
@@ -81,6 +87,11 @@ public class InputDataMobil extends javax.swing.JPanel {
         });
 
         jButton1.setText("Save");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -152,6 +163,19 @@ public class InputDataMobil extends javax.swing.JPanel {
     private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField5ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        Mobil m = new Mobil(Integer.parseInt(jTextField5.getText()),jTextField3.getText(),Integer.parseInt(jTextField4.getText()),true,jTextField1.getText(),jComboBox1.getSelectedItem().toString());
+        sd.arrMobil.add(m);
+        sd.addtabeltersedia(m.getId_kendaraan(),"Mobil",m.getMerek(),m.getTransmisi(),m.getKapasitas(),m.getHarga_sewa());
+        s.writem(sd.arrMobil);
+        jTextField1.setText("");
+        jTextField3.setText("");
+        jTextField4.setText("");
+        jTextField5.setText("");
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

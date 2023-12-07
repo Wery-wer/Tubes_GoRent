@@ -26,10 +26,28 @@ public class ScreenData {
         this.arrMobil = s.readm();
     }
     
+    public void setarrMotor(){
+        this.arrMotor = s.readmtr();
+    }
+    
     public void setDefaultTableModel(){
+        int idx = 1;
         for (int i = 0;i<arrMobil.size();i++) {
             tabeltersedia.addRow(new Object []{i+1, arrMobil.get(i).getId_kendaraan(),"Mobil", arrMobil.get(i).getMerek(), arrMobil.get(i).getTransmisi(), arrMobil.get(i).getKapasitas(), arrMobil.get(i).getHarga_sewa()});
+            idx++;
+        }
+        
+        for (int i = 0;i<arrMotor.size();i++) {
+            tabeltersedia.addRow(new Object []{idx, arrMotor.get(i).getId_kendaraan(),"Motor", arrMotor.get(i).getMerek(), arrMotor.get(i).getTransmisi(), 2, arrMotor.get(i).getHarga_sewa()});
+            idx++;
         }
     }
+
+    public static void addtabeltersedia(String id,String jenis ,String merek,String transmisi,int kapasitas, int harga) {
+        tabeltersedia.addRow(new Object [] {tabeltersedia.getRowCount()+1,id,jenis,merek,transmisi,kapasitas,harga});
+        tabeltersedia.fireTableDataChanged();
+    }
+    
+    
     
 }

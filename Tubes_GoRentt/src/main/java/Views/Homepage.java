@@ -16,8 +16,6 @@ public class Homepage extends javax.swing.JPanel {
      * Creates new form Homepage
      */
     public Homepage() {
-        sd.setarrMobil();
-        sd.setDefaultTableModel();
         initComponents();
     }
 

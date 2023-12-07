@@ -4,12 +4,17 @@
  */
 package Views;
 
+import Data.Save;
+import Data.ScreenData;
+import Model.Motor;
+
 /**
  *
  * @author Holanta
  */
 public class InputDataMotor extends javax.swing.JPanel {
-
+    ScreenData sd = new ScreenData();
+    Save s = new Save();
     /**
      * Creates new form InputDataMobil
      */
@@ -69,6 +74,11 @@ public class InputDataMotor extends javax.swing.JPanel {
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Manual", "Matic" }));
 
         jButton1.setText("Save");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("ID Kendaraan");
 
@@ -136,6 +146,18 @@ public class InputDataMotor extends javax.swing.JPanel {
     private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField4ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        Motor m = new Motor(jTextField3.getText(),Integer.parseInt(jTextField4.getText()),true,jTextField1.getText(),jComboBox1.getSelectedItem().toString());
+        sd.arrMotor.add(m);
+        sd.addtabeltersedia(m.getId_kendaraan(),"Motor",m.getMerek(),m.getTransmisi(),2,m.getHarga_sewa());
+        s.writemtr(sd.arrMotor);
+        
+        jTextField1.setText("");
+        jTextField3.setText("");
+        jTextField4.setText("");
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

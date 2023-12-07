@@ -4,19 +4,24 @@
  */
 package com.mycompany.tubes_gorentt;
 
+import Data.ScreenData;
 import Screen.InputDataMobil_Panel;
 import Screen.Transaksi_Panel;
+import Views.*;
 
 /**
  *
  * @author Holanta
  */
 public class Main_Menu extends javax.swing.JFrame {
-
+    ScreenData sd = new ScreenData();
     /**
      * Creates new form Main_Menu
      */
     public Main_Menu() {
+        sd.setarrMobil();
+        sd.setarrMotor();
+        sd.setDefaultTableModel();
         initComponents();
         
     }
@@ -611,7 +616,7 @@ public class Main_Menu extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(BodyPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -627,17 +632,30 @@ public class Main_Menu extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         
-        // remove panel
         MainMenuPanel.removeAll();
-        MainMenuPanel.repaint();
-        MainMenuPanel.revalidate();
+
 
         // add panel selanjutnya
-        MainMenuPanel.add(Pembayaran);
+        Homepage home = new Homepage();
+        MainMenuPanel.add(home);
 
         // revalidate and repaint after adding the new panel
         MainMenuPanel.repaint();
         MainMenuPanel.revalidate();
+        
+        
+        
+        // remove panel
+//        MainMenuPanel.removeAll();
+//        MainMenuPanel.repaint();
+//        MainMenuPanel.revalidate();
+//
+//        // add panel selanjutnya
+//        MainMenuPanel.add(Pembayaran);
+//
+//        // revalidate and repaint after adding the new panel
+//        MainMenuPanel.repaint();
+//        MainMenuPanel.revalidate();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -650,9 +668,20 @@ public class Main_Menu extends javax.swing.JFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
-        InputDataMobil_Panel imp = new InputDataMobil_Panel();
-        Main_Menu.this.setVisible(false);
-        imp.setVisible(true);
+//        InputDataMobil_Panel imp = new InputDataMobil_Panel();
+//        Main_Menu.this.setVisible(false);
+//        imp.setVisible(true);
+        MainMenuPanel.removeAll();
+
+
+        // add panel selanjutnya
+        InputDataMobil imb = new InputDataMobil();
+        MainMenuPanel.add(imb);
+
+        // revalidate and repaint after adding the new panel
+        MainMenuPanel.repaint();
+        MainMenuPanel.revalidate();
+
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
@@ -661,13 +690,40 @@ public class Main_Menu extends javax.swing.JFrame {
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         // TODO add your handling code here:
-        Transaksi_Panel tp = new Transaksi_Panel();
-        Main_Menu.this.setVisible(false);
-        tp.setVisible(true);
+//        Transaksi_Panel tp = new Transaksi_Panel();
+//        Main_Menu.this.setVisible(false);
+//        tp.setVisible(true);
+
+         
+        
+        MainMenuPanel.removeAll();
+
+
+        // add panel selanjutnya
+        Transaksi trans = new Transaksi();
+        MainMenuPanel.add(trans);
+
+        // revalidate and repaint after adding the new panel
+        MainMenuPanel.repaint();
+        MainMenuPanel.revalidate();
+
+        
+        
+        
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         // TODO add your handling code here:
+        MainMenuPanel.removeAll();
+
+
+        // add panel selanjutnya
+        InputDataMotor idmtr = new InputDataMotor();
+        MainMenuPanel.add(idmtr);
+
+        // revalidate and repaint after adding the new panel
+        MainMenuPanel.repaint();
+        MainMenuPanel.revalidate();
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
