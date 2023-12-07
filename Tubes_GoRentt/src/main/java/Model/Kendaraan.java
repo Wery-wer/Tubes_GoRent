@@ -4,18 +4,20 @@
  */
 package Model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Holanta
  */
-public abstract class Kendaraan {
+public abstract class Kendaraan implements Serializable{
     private String merek;
-    private String harga_sewa;
+    private int harga_sewa;
     private boolean ketersediaan;
     private String id_kendaraan;
     private String transmisi;
 
-    public Kendaraan(String merek, String harga_sewa, boolean ketersediaan, String id_kendaraan, String transmisi) {
+    public Kendaraan(String merek, int harga_sewa, boolean ketersediaan, String id_kendaraan, String transmisi) {
         this.merek = merek;
         this.harga_sewa = harga_sewa;
         this.ketersediaan = ketersediaan;
@@ -33,11 +35,11 @@ public abstract class Kendaraan {
         this.merek = merek;
     }
 
-    public String getHarga_sewa() {
+    public int getHarga_sewa() {
         return harga_sewa;
     }
 
-    public void setHarga_sewa(String harga_sewa) {
+    public void setHarga_sewa(int harga_sewa) {
         this.harga_sewa = harga_sewa;
     }
 

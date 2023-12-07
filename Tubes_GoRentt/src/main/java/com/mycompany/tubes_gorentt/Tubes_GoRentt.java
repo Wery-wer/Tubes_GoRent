@@ -4,6 +4,10 @@
 
 package com.mycompany.tubes_gorentt;
 
+import Data.Save;
+import Model.Mobil;
+import java.util.ArrayList;
+
 /**
  *
  * @author Holanta
@@ -11,6 +15,20 @@ package com.mycompany.tubes_gorentt;
 public class Tubes_GoRentt {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        Save s = new Save();
+        
+//        Mobil m = new Mobil(1,"m",10,true,"sada","manual");
+//        ArrayList<Mobil> arr = new ArrayList<Mobil>();
+//        arr.add(m);
+//        
+//        m = new Mobil(1,"m",10,true,"sasadsa","manual");
+//        arr.add(m);
+//        m = new Mobil(1,"m",10,true,"fgdfgfd","manual");
+//        arr.add(m);
+//        s.writem(arr);
+        
+        ArrayList<Mobil> hasil = new ArrayList<Mobil>();
+        hasil = s.readm();
+        System.out.println(hasil.get(0).getMerek());
     }
 }

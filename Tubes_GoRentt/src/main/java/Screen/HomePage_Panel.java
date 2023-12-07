@@ -4,16 +4,26 @@
  */
 package Screen;
 
+import Data.ScreenData;
+import Model.Mobil;
+import java.util.ArrayList;
+
 /**
  *
  * @author Holanta
  */
 public class HomePage_Panel extends javax.swing.JFrame {
+    public ArrayList<Mobil> listmobil = new ArrayList<Mobil>();
+    ScreenData sd = new ScreenData();
+    
+    
 
     /**
      * Creates new form HomePage
      */
     public HomePage_Panel() {
+        sd.setarrMobil();
+        sd.setDefaultTableModel();
         initComponents();
     }
 
@@ -46,32 +56,8 @@ public class HomePage_Panel extends javax.swing.JFrame {
 
         jLabel2.setText("Data Ketersediaan Kendaraan");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
-            },
-            new String [] {
-                "No", "ID Kendaraan", "Tipe Kendaraan", "Merek", "Transmisi", "Kapasitas", "Harga"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, true, true, false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
+        jTable1.setModel(sd.tabeltersedia
+        );
         jTable1.setRowHeight(30);
         jTable1.setShowGrid(true);
         jScrollPane1.setViewportView(jTable1);

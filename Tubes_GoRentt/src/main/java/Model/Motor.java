@@ -10,7 +10,7 @@ package Model;
  */
 public class Motor extends Kendaraan implements Asuransi {
 
-    public Motor(String merek, String harga_sewa, boolean ketersediaan, String id_kendaraan, String transmisi) {
+    public Motor(String merek, int harga_sewa, boolean ketersediaan, String id_kendaraan, String transmisi) {
         super(merek, harga_sewa, ketersediaan, id_kendaraan, transmisi);
     }
 
