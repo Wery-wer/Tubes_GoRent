@@ -56,8 +56,6 @@ public class HomePage_Panel extends javax.swing.JFrame {
 
         jLabel2.setText("Data Ketersediaan Kendaraan");
 
-        jTable1.setModel(sd.tabeltersedia
-        );
         jTable1.setRowHeight(30);
         jTable1.setShowGrid(true);
         jScrollPane1.setViewportView(jTable1);
