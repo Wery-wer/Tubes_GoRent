@@ -47,6 +47,7 @@ public class Main_Menu extends javax.swing.JFrame {
         jButton5 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
+        jButton10 = new javax.swing.JButton();
         MainMenuPanel = new javax.swing.JPanel();
         WelcomePanel = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
@@ -149,7 +150,7 @@ public class Main_Menu extends javax.swing.JFrame {
         });
 
         jButton7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton7.setText("TRANSAKSI");
+        jButton7.setText("INP TRANSAKSI");
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton7ActionPerformed(evt);
@@ -161,6 +162,14 @@ public class Main_Menu extends javax.swing.JFrame {
         jButton8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton8ActionPerformed(evt);
+            }
+        });
+
+        jButton10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButton10.setText("TABEL TRANSAKSI");
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton10ActionPerformed(evt);
             }
         });
 
@@ -183,7 +192,8 @@ public class Main_Menu extends javax.swing.JFrame {
                             .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(19, 19, 19))))
         );
         MenuPanelLayout.setVerticalGroup(
@@ -196,8 +206,8 @@ public class Main_Menu extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
                 .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -207,6 +217,8 @@ public class Main_Menu extends javax.swing.JFrame {
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -229,7 +241,7 @@ public class Main_Menu extends javax.swing.JFrame {
             .addGroup(WelcomePanelLayout.createSequentialGroup()
                 .addGap(198, 198, 198)
                 .addComponent(jLabel11)
-                .addContainerGap(223, Short.MAX_VALUE))
+                .addContainerGap(208, Short.MAX_VALUE))
         );
         WelcomePanelLayout.setVerticalGroup(
             WelcomePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -253,7 +265,7 @@ public class Main_Menu extends javax.swing.JFrame {
             .addGroup(HomePanelLayout.createSequentialGroup()
                 .addGap(400, 400, 400)
                 .addComponent(jLabel9)
-                .addContainerGap(453, Short.MAX_VALUE))
+                .addContainerGap(445, Short.MAX_VALUE))
         );
         HomePanelLayout.setVerticalGroup(
             HomePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -277,7 +289,7 @@ public class Main_Menu extends javax.swing.JFrame {
             .addGroup(TransaksiLayout.createSequentialGroup()
                 .addGap(379, 379, 379)
                 .addComponent(jLabel8)
-                .addContainerGap(459, Short.MAX_VALUE))
+                .addContainerGap(451, Short.MAX_VALUE))
         );
         TransaksiLayout.setVerticalGroup(
             TransaksiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -296,7 +308,7 @@ public class Main_Menu extends javax.swing.JFrame {
         Penyewa.setLayout(PenyewaLayout);
         PenyewaLayout.setHorizontalGroup(
             PenyewaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 886, Short.MAX_VALUE)
+            .addGap(0, 878, Short.MAX_VALUE)
         );
         PenyewaLayout.setVerticalGroup(
             PenyewaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -312,7 +324,7 @@ public class Main_Menu extends javax.swing.JFrame {
         InputDataMobil.setLayout(InputDataMobilLayout);
         InputDataMobilLayout.setHorizontalGroup(
             InputDataMobilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 886, Short.MAX_VALUE)
+            .addGap(0, 878, Short.MAX_VALUE)
         );
         InputDataMobilLayout.setVerticalGroup(
             InputDataMobilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -328,7 +340,7 @@ public class Main_Menu extends javax.swing.JFrame {
         InputDataMotor.setLayout(InputDataMotorLayout);
         InputDataMotorLayout.setHorizontalGroup(
             InputDataMotorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 886, Short.MAX_VALUE)
+            .addGap(0, 878, Short.MAX_VALUE)
         );
         InputDataMotorLayout.setVerticalGroup(
             InputDataMotorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -419,7 +431,7 @@ public class Main_Menu extends javax.swing.JFrame {
                     .addGroup(KendaraanLayout.createSequentialGroup()
                         .addGap(337, 337, 337)
                         .addComponent(jButton9)))
-                .addContainerGap(249, Short.MAX_VALUE))
+                .addContainerGap(241, Short.MAX_VALUE))
         );
         KendaraanLayout.setVerticalGroup(
             KendaraanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -527,7 +539,7 @@ public class Main_Menu extends javax.swing.JFrame {
                         .addComponent(jLabel7)
                         .addGap(84, 84, 84)
                         .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(316, Short.MAX_VALUE))
+                .addContainerGap(309, Short.MAX_VALUE))
         );
         PembayaranLayout.setVerticalGroup(
             PembayaranLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -576,7 +588,7 @@ public class Main_Menu extends javax.swing.JFrame {
         Pengembalian.setLayout(PengembalianLayout);
         PengembalianLayout.setHorizontalGroup(
             PengembalianLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 886, Short.MAX_VALUE)
+            .addGap(0, 878, Short.MAX_VALUE)
         );
         PengembalianLayout.setVerticalGroup(
             PengembalianLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -593,7 +605,7 @@ public class Main_Menu extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(MenuPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(MainMenuPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(MainMenuPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 886, Short.MAX_VALUE)
                 .addContainerGap())
         );
         BodyPanelLayout.setVerticalGroup(
@@ -688,6 +700,12 @@ public class Main_Menu extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
 
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        // TODO add your handling code here:
+        TabelTransaksi tabTrans = new TabelTransaksi();
+        changePanel(tabTrans);
+    }//GEN-LAST:event_jButton10ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -740,6 +758,7 @@ public class Main_Menu extends javax.swing.JFrame {
     private javax.swing.JPanel Transaksi;
     private javax.swing.JPanel WelcomePanel;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
