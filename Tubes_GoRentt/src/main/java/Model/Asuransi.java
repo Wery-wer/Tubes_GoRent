@@ -9,5 +9,7 @@ package Model;
  * @author Holanta
  */
 public interface Asuransi {
-    
+    int konstanta_asuransi_mobil = 1000;
+    int konstanta_asuransi_motor = 500;
+    public void addAsuransi();
 }
