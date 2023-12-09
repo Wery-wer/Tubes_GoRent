@@ -12,7 +12,7 @@ import java.time.format.*;;
  */
 public class Transaksi {
     private String id_transaksi; 
-            //id_kendaraan;
+    private String id_kendaraan;
     private int lama_penyewaan, total_harga;
     private Pembayaran pembayaran; 
     private Pengembalian pengembalian;
@@ -20,9 +20,15 @@ public class Transaksi {
     private Penyewa data_penyewa;
     private Mobil mobil; 
     private Motor motor;
-    
-    
 
+    public String getId_kendaraan() {
+        return id_kendaraan;
+    }
+
+    public void setId_kendaraan(String id_kendaraan) {
+        this.id_kendaraan = id_kendaraan;
+    }
+    
     public String getId_transaksi() {
         return id_transaksi;
     }
