@@ -7,6 +7,7 @@ package Views;
 import Data.Save;
 import Data.ScreenData;
 import Model.Motor;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -142,17 +143,34 @@ public class InputDataMotor extends javax.swing.JPanel {
     private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField4ActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        Motor m = new Motor(jTextField3.getText(),Integer.parseInt(jTextField4.getText()),true,jTextField1.getText(),jComboBox1.getSelectedItem().toString());
-        sd.arrMotor.add(m);
-        sd.addtabeltersedia(m,null);
-        s.writemtr(sd.arrMotor);
-        
+    
+    private void clearInput(){
         jTextField1.setText("");
         jTextField3.setText("");
         jTextField4.setText("");
+    }
+    
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        try {
+            String merek = jTextField3.getText();
+            int harga_sewa = Integer.parseInt(jTextField4.getText());
+            boolean ketersediaan = true;
+            String id_kendaraan = jTextField1.getText();
+            String transmisi = jComboBox1.getSelectedItem().toString();
+            if (id_kendaraan.equals("") || merek.equals("") || harga_sewa == 0){
+                JOptionPane.showMessageDialog(null, "Inputan tidak boleh kosong");
+            } else {
+                Motor m = new Motor(merek, harga_sewa , ketersediaan, id_kendaraan, transmisi);
+                sd.arrMotor.add(m);
+                sd.addtabeltersedia(m,null);
+                s.writemtr(sd.arrMotor);
+                JOptionPane.showMessageDialog(null, "Data Berhasil Ditambahkan");
+                clearInput();
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
 

@@ -7,6 +7,8 @@ package Views;
 import Data.Save;
 import Data.ScreenData;
 import Model.Mobil;
+import Model.Motor;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -163,17 +165,36 @@ public class InputDataMobil extends javax.swing.JPanel {
     private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField5ActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        Mobil m = new Mobil(Integer.parseInt(jTextField5.getText()),jTextField3.getText(),Integer.parseInt(jTextField4.getText()),true,jTextField1.getText(),jComboBox1.getSelectedItem().toString());
-        sd.arrMobil.add(m);
-        sd.addtabeltersedia(null,m);
-        s.writem(sd.arrMobil);
+    
+    public void clearInput(){
         jTextField1.setText("");
         jTextField3.setText("");
         jTextField4.setText("");
         jTextField5.setText("");
+    }
+    
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        try {
+            String merek = jTextField3.getText();
+            int harga_sewa = Integer.parseInt(jTextField4.getText());
+            boolean ketersediaan = true;
+            String id_kendaraan = jTextField1.getText();
+            String transmisi = jComboBox1.getSelectedItem().toString();
+            int kapasitas = Integer.parseInt(jTextField5.getText());
+            if (id_kendaraan.equals("") || merek.equals("") || harga_sewa == 0){
+                JOptionPane.showMessageDialog(null, "Inputan tidak boleh kosong");
+            } else {
+                Mobil m = new Mobil(kapasitas, merek, harga_sewa, ketersediaan, id_kendaraan, transmisi);
+                sd.arrMobil.add(m);
+                sd.addtabeltersedia(null,m);
+                s.writem(sd.arrMobil);
+                JOptionPane.showMessageDialog(null, "Data Berhasil Ditambahkan");
+                clearInput();
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
         
     }//GEN-LAST:event_jButton1ActionPerformed
 

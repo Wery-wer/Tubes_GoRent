@@ -12,7 +12,7 @@ import java.io.Serializable;
  */
 public abstract class Kendaraan implements Serializable{
     private String merek;
-    private int harga_sewa;
+    private int harga_sewa = 0;
     private boolean ketersediaan;
     private String id_kendaraan;
     private String transmisi;

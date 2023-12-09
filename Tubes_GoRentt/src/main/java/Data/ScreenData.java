@@ -59,7 +59,7 @@ public class ScreenData {
             tabeltersedia.addRow(new Object [] {tabeltersedia.getRowCount()+1,m.getId_kendaraan(),"Mobil",m.getMerek(),m.getTransmisi(),m.getKapasitas(),m.getHarga_sewa()});
             tabeltersedia.fireTableDataChanged();
         }else if (mtr != null){
-            tabeltersedia.addRow(new Object [] {tabeltersedia.getRowCount()+1,mtr.getId_kendaraan(),"Mobil",mtr.getMerek(),mtr.getTransmisi(),2,mtr.getHarga_sewa()});
+            tabeltersedia.addRow(new Object [] {tabeltersedia.getRowCount()+1,mtr.getId_kendaraan(),"Motor",mtr.getMerek(),mtr.getTransmisi(),2,mtr.getHarga_sewa()});
             tabeltersedia.fireTableDataChanged();
         }
         
