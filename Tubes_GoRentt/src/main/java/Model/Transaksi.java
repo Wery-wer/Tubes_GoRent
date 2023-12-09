@@ -11,12 +11,17 @@ import java.time.format.*;;
  * @author Holanta
  */
 public class Transaksi {
-    private String id_transaksi, id_kendaraan;
+    private String id_transaksi; 
+            //id_kendaraan;
     private int lama_penyewaan, total_harga;
-    private Pembayaran pembayaran; private Pengembalian pengembalian;
+    private Pembayaran pembayaran; 
+    private Pengembalian pengembalian;
     private LocalDateTime tanggal_penyewaan;
-    private Penyewa data_penywa;
-    private Mobil mobil; private Motor motor;
+    private Penyewa data_penyewa;
+    private Mobil mobil; 
+    private Motor motor;
+    
+    
 
     public String getId_transaksi() {
         return id_transaksi;
@@ -31,12 +36,28 @@ public class Transaksi {
         this.lama_penyewaan = lama_penyewaan;
     }
     public String getTanggal_penyewaan() {
-        DateTimeFormatter IniAdalahBentukFormatnya = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        DateTimeFormatter IniAdalahBentukFormatnya = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         return (tanggal_penyewaan.format(IniAdalahBentukFormatnya));     
     }
     public void setTanggal_penyewaan(String tanggal_penyewaan) {
-        DateTimeFormatter IniAdalahBentukFormatnya = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        DateTimeFormatter IniAdalahBentukFormatnya = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         this.tanggal_penyewaan = LocalDateTime.parse(tanggal_penyewaan, IniAdalahBentukFormatnya);
+    }
+
+    public Mobil getMobil() {
+        return mobil;
+    }
+
+    public void setMobil(Mobil mobil) {
+        this.mobil = mobil;
+    }
+
+    public Motor getMotor() {
+        return motor;
+    }
+
+    public void setMotor(Motor motor) {
+        this.motor = motor;
     }
     public int getTotal_harga() {
         return total_harga;
@@ -48,6 +69,9 @@ public class Transaksi {
         return (pembayaran.getStatus_bayar());
     }
     public void createPembayaran(int jumlah_bayar) {
+        this.pembayaran = new Pembayaran();
         this.pembayaran.setJumlah_bayar(jumlah_bayar);
     }
+    
+    
 }

@@ -168,7 +168,7 @@ public class InputDataMobil extends javax.swing.JPanel {
         // TODO add your handling code here:
         Mobil m = new Mobil(Integer.parseInt(jTextField5.getText()),jTextField3.getText(),Integer.parseInt(jTextField4.getText()),true,jTextField1.getText(),jComboBox1.getSelectedItem().toString());
         sd.arrMobil.add(m);
-        sd.addtabeltersedia(m.getId_kendaraan(),"Mobil",m.getMerek(),m.getTransmisi(),m.getKapasitas(),m.getHarga_sewa());
+        sd.addtabeltersedia(null,m);
         s.writem(sd.arrMobil);
         jTextField1.setText("");
         jTextField3.setText("");

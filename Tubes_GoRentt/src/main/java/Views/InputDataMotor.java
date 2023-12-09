@@ -147,7 +147,7 @@ public class InputDataMotor extends javax.swing.JPanel {
         // TODO add your handling code here:
         Motor m = new Motor(jTextField3.getText(),Integer.parseInt(jTextField4.getText()),true,jTextField1.getText(),jComboBox1.getSelectedItem().toString());
         sd.arrMotor.add(m);
-        sd.addtabeltersedia(m.getId_kendaraan(),"Motor",m.getMerek(),m.getTransmisi(),2,m.getHarga_sewa());
+        sd.addtabeltersedia(m,null);
         s.writemtr(sd.arrMotor);
         
         jTextField1.setText("");

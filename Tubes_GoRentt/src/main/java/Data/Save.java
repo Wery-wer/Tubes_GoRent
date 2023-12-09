@@ -20,7 +20,7 @@ import java.util.ArrayList;
 public class Save {
     
     public ArrayList<Mobil> readm(){
-        File fm = new File("E:/PBO/test/Tubes_GoRent/Tubes_GoRentt/data/mobil.data");
+        File fm = new File("./data/mobil.data");
         ArrayList<Mobil> output = new ArrayList<Mobil>();
     
         try{
@@ -38,7 +38,7 @@ public class Save {
     }
     
     public void writem(ArrayList<Mobil> m){
-        File fm = new File("E:/PBO/test/Tubes_GoRent/Tubes_GoRentt/data/mobil.data");
+        File fm = new File("./data/mobil.data");
         try {
             if(!fm.exists()){
                 fm.createNewFile();
@@ -56,7 +56,7 @@ public class Save {
     }
     
     public void writemtr(ArrayList<Motor> m){
-        File fm = new File("E:/PBO/test/Tubes_GoRent/Tubes_GoRentt/data/motor.data");
+        File fm = new File("./data/motor.data");
         try {
             if(!fm.exists()){
                 fm.createNewFile();
@@ -74,7 +74,7 @@ public class Save {
     }
     
     public ArrayList<Motor> readmtr(){
-        File fm = new File("E:/PBO/test/Tubes_GoRent/Tubes_GoRentt/data/motor.data");
+        File fm = new File("./data/motor.data");
         ArrayList<Motor> output = new ArrayList<Motor>();
     
         try{

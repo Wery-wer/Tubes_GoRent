@@ -26,9 +26,18 @@ public class Tubes_GoRentt {
 //        m = new Mobil(1,"m",10,true,"fgdfgfd","manual");
 //        arr.add(m);
 //        s.writem(arr);
+
+        Mobil m = new Mobil(1,"m",10,true,"sada","manual");
+//        ArrayList<Mobil> arr = new ArrayList<Mobil>();
+//        arr.add(m);
+//        s.writem(arr);
         
         ArrayList<Mobil> hasil = new ArrayList<Mobil>();
         hasil = s.readm();
-        System.out.println(hasil.get(0).getMerek());
+        
+        //System.out.println(hasil.getFirst().getMerek());
+        System.out.println("adsadas");
+        System.out.println(hasil.contains(m));
+        
     }
 }

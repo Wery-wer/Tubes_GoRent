@@ -18,4 +18,9 @@ public class Motor extends Kendaraan implements Asuransi {
     public void addAsuransi() {
     }
     
+    @Override
+    public boolean equals(Object obj) {
+      Motor s = (Motor)obj;
+      return super.getId_kendaraan().equalsIgnoreCase(s.getId_kendaraan()) && super.getMerek().equalsIgnoreCase(s.getMerek());
+    }
 }

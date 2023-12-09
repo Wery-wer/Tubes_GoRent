@@ -30,4 +30,10 @@ public class Mobil extends Kendaraan implements Asuransi, Serializable{
     public void addAsuransi() {
     }
     
+    @Override
+   public boolean equals(Object obj) {
+      Mobil s = (Mobil)obj;
+      return super.getId_kendaraan().equalsIgnoreCase(s.getId_kendaraan()) && super.getMerek().equalsIgnoreCase(s.getMerek());
+   }
+    
 }
