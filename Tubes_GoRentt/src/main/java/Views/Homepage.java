@@ -5,13 +5,14 @@
 package Views;
 
 import Data.ScreenData;
-
+import com.mycompany.tubes_gorentt.*;
 /**
  *
  * @author Holanta
  */
 public class Homepage extends javax.swing.JPanel {
     ScreenData sd = new ScreenData();
+    Object idValue;
     /**
      * Creates new form Homepage
      */
@@ -75,6 +76,11 @@ public class Homepage extends javax.swing.JPanel {
         );
         jTable1.setRowHeight(30);
         jTable1.setShowGrid(true);
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -107,6 +113,18 @@ public class Homepage extends javax.swing.JPanel {
                 .addContainerGap(105, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        // TODO add your handling code here:
+        Main_Menu mn = new Main_Menu();
+        int selectedRow = jTable1.getSelectedRow();
+        if (selectedRow != -1){
+            idValue = jTable1.getValueAt(selectedRow, 1);
+        }
+        TransaksiDialog trs = new TransaksiDialog(mn, true, idValue.toString());
+        trs.setVisible(true);
+         
+    }//GEN-LAST:event_jTable1MouseClicked
 
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
