@@ -4,13 +4,14 @@
  */
 package Model;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  *
  * @author Holanta
  */
-public class Pengembalian {
+public class Pengembalian implements Serializable{
     private Pembayaran pembayaran;
     private Date tanggal_kembali;
     private int denda;

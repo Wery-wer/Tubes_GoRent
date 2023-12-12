@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Model;
+import java.io.Serializable;
 import java.time.*;
 import java.time.format.*;;
 
@@ -10,7 +11,7 @@ import java.time.format.*;;
  *
  * @author Holanta
  */
-public class Transaksi {
+public class Transaksi implements Serializable{
     private String id_transaksi; 
     private String id_kendaraan;
     private int lama_penyewaan, total_harga;

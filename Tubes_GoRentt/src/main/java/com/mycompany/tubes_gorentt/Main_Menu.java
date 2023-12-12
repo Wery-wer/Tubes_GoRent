@@ -20,9 +20,11 @@ public class Main_Menu extends javax.swing.JFrame {
      * Creates new form Main_Menu
      */
     public Main_Menu() {
+        sd.setarrTransaksi();
         sd.setarrMobil();
         sd.setarrMotor();
-        sd.setDefaultTableModel();
+        sd.settabeltersedia();
+        sd.settabeltersewa();
         initComponents();
         
     }

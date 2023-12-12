@@ -6,6 +6,7 @@ package Data;
 
 import Model.Mobil;
 import Model.Motor;
+import Model.Transaksi;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -89,5 +90,45 @@ public class Save {
             System.out.println(e.getMessage());
         }
         return output;
+    }
+    
+    public ArrayList<Transaksi> readTransaksi(){
+        System.out.println("1111111");
+        File fm = new File("./data/transaksi.data");
+        ArrayList<Transaksi> output = new ArrayList<Transaksi>();
+    
+        try{
+            
+            FileInputStream fis = new FileInputStream(fm);
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            System.out.println("2222222");
+            ArrayList<Transaksi> m = (ArrayList<Transaksi>)ois.readObject();
+            
+            for (Transaksi transaksi : m){
+                System.out.println("wowowowo"+transaksi);
+                output.add(transaksi);
+            }
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+        return output;
+    }
+    
+    public void writetransaksi (ArrayList<Transaksi> trs){
+        File fm = new File("./data/transaksi.data");
+        try {
+            if(!fm.exists()){
+                fm.createNewFile();
+            }else{
+                FileOutputStream fos = new FileOutputStream(fm);
+                ObjectOutputStream oos = new ObjectOutputStream(fos);
+                oos.writeObject(trs);
+                oos.close();
+                fos.close();
+                System.out.println("sukses");
+            }
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
     }
 }

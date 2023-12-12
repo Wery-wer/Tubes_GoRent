@@ -4,11 +4,13 @@
  */
 package Model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Holanta
  */
-public class Penyewa {
+public class Penyewa implements Serializable{
     private String nama;
     private String nomor_telepon;
     private String alamat;

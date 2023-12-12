@@ -22,8 +22,8 @@ public class HomePage_Panel extends javax.swing.JFrame {
      * Creates new form HomePage
      */
     public HomePage_Panel() {
-        sd.setarrMobil();
-        sd.setDefaultTableModel();
+        //sd.setarrMobil();
+        //sd.setDefaultTableModel();
         initComponents();
     }
 

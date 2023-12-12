@@ -4,11 +4,13 @@
  */
 package Model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Holanta
  */
-public class Motor extends Kendaraan implements Asuransi {
+public class Motor extends Kendaraan implements Asuransi,Serializable {
 
     public Motor(String merek, int harga_sewa, boolean ketersediaan, String id_kendaraan, String transmisi) {
         super(merek, harga_sewa, ketersediaan, id_kendaraan, transmisi);

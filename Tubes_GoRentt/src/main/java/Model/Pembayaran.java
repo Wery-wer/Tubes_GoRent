@@ -4,13 +4,14 @@
  */
 package Model;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  *
  * @author Holanta
  */
-public class Pembayaran {
+public class Pembayaran implements Serializable {
     private String id_pembayaran;
     private Date tanggal_bayar;
     private boolean status_bayar;
