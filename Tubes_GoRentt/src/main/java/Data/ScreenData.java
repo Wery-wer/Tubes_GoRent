@@ -65,9 +65,7 @@ public class ScreenData {
         
     }
     
-    
-    
-    public void addtabeltersewamobil(Transaksi t) {
+    public void addtabeltersewa(Transaksi t) {
         if (t.getMobil() != null){
             tabeltersewa.addRow(new Object [] {tabeltersewa.getRowCount()+1,t.getMobil().getId_kendaraan(),"Mobil",t.getMobil().getMerek(),t.getTanggal_penyewaan()});
             tabeltersewa.fireTableDataChanged();
@@ -78,6 +76,23 @@ public class ScreenData {
         
     }
     
+    public Motor getMotor(String id_kendaraan){
+        for (Motor motor : arrMotor) {
+            if (motor.getId_kendaraan().equals(id_kendaraan)) {
+                return motor; // Motor ditemukan
+            }
+        }
+        return null;
+    }
+    
+    public Mobil getMobil(String id_kendaraan){
+        for (Mobil mobil: arrMobil) {
+            if (mobil.getId_kendaraan().equals(id_kendaraan)) {
+                return mobil;
+            }
+        }
+        return null;
+    }
 
     
     

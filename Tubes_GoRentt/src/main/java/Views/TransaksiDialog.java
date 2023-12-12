@@ -5,6 +5,7 @@
 package Views;
 
 import Data.ScreenData;
+import Model.*;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 
@@ -14,12 +15,15 @@ import javax.swing.DefaultComboBoxModel;
  */
 public class TransaksiDialog extends javax.swing.JDialog {
     String id_value;
+    String tipe_kendaraan;
+    ScreenData sd = new ScreenData();
     /**
      * Creates new form TransaksiDialog
      */
-    public TransaksiDialog(java.awt.Frame parent, boolean modal, String idValue) {
+    public TransaksiDialog(java.awt.Frame parent, boolean modal, String idValue, String tipe_kendaraan) {
         super(parent, modal);
         this.id_value = idValue;
+        this.tipe_kendaraan = tipe_kendaraan;
         initComponents();
         
         
@@ -44,13 +48,13 @@ public class TransaksiDialog extends javax.swing.JDialog {
         jLabel11 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jTextField5 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
         jTextField1 = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
+        jSpinner1 = new javax.swing.JSpinner();
+        jSpinner2 = new javax.swing.JSpinner();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -81,12 +85,6 @@ public class TransaksiDialog extends javax.swing.JDialog {
             }
         });
 
-        jTextField5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField5ActionPerformed(evt);
-            }
-        });
-
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel1.setText("Input Data Transaksi - GoRent");
@@ -94,12 +92,6 @@ public class TransaksiDialog extends javax.swing.JDialog {
         jLabel7.setText("Total Harga");
 
         jLabel2.setText("ID Transaksi");
-
-        jTextField6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField6ActionPerformed(evt);
-            }
-        });
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -146,8 +138,8 @@ public class TransaksiDialog extends javax.swing.JDialog {
                                 .addComponent(jLabel7))
                             .addGap(81, 81, 81)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jTextField6, javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jSpinner1, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
+                                .addComponent(jSpinner2)))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel2)
@@ -173,12 +165,12 @@ public class TransaksiDialog extends javax.swing.JDialog {
                     .addComponent(jLabel4))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6))
+                    .addComponent(jLabel6)
+                    .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7))
+                    .addComponent(jLabel7)
+                    .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(34, 34, 34)
                 .addComponent(jLabel9)
                 .addGap(35, 35, 35)
@@ -206,20 +198,36 @@ public class TransaksiDialog extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField3ActionPerformed
 
-    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField5ActionPerformed
-
-    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField6ActionPerformed
-
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        String nama_penyewa = jTextField3.getText();
+        String notlp_penyewa = jTextField9.getText();
+        String alamat_penyewa = jTextField10.getText();
+        Penyewa pnyw = new Penyewa(nama_penyewa, notlp_penyewa, alamat_penyewa);
+        
+        String id_trans = jTextField1.getText();
+        String id_kendaraan = this.id_value;
+        int lama_penyewaan = (int) jSpinner1.getValue();
+        int total_harga = (int) jSpinner2.getValue();
+        
+        if (tipe_kendaraan.equals("Motor")){
+            Motor mtr = sd.getMotor(id_value);
+            Mobil mbl = null;
+            Transaksi trs = new Transaksi(id_trans, id_value, lama_penyewaan, total_harga, pnyw, mbl, mtr);
+            sd.addtabeltersewa(trs);
+        } else if(tipe_kendaraan.equals("Mobil")){
+            Motor mtr = null;
+            Mobil mbl = sd.getMobil(id_value);
+            Transaksi trs = new Transaksi(id_trans, id_value, lama_penyewaan, total_harga, pnyw, mbl, mtr);
+            sd.addtabeltersewa(trs);
+        }
+        
+        
+     
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -252,7 +260,7 @@ public class TransaksiDialog extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                TransaksiDialog dialog = new TransaksiDialog(new javax.swing.JFrame(), true, "");
+                TransaksiDialog dialog = new TransaksiDialog(new javax.swing.JFrame(), true, "", "");
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -276,11 +284,11 @@ public class TransaksiDialog extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JSpinner jSpinner1;
+    private javax.swing.JSpinner jSpinner2;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField9;
     // End of variables declaration//GEN-END:variables
 }

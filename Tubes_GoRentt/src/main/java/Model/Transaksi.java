@@ -21,6 +21,19 @@ public class Transaksi {
     private Mobil mobil; 
     private Motor motor;
 
+    public Transaksi(String id_transaksi, String id_kendaraan, int lama_penyewaan, int total_harga, Penyewa data_penyewa, Mobil mobil, Motor motor) {
+        this.id_transaksi = id_transaksi;
+        this.id_kendaraan = id_kendaraan;
+        this.lama_penyewaan = lama_penyewaan;
+        this.total_harga = total_harga;
+        this.tanggal_penyewaan = LocalDateTime.now();
+        this.data_penyewa = data_penyewa;
+        this.mobil = mobil;
+        this.motor = motor;
+    }
+    
+    
+
     public String getId_kendaraan() {
         return id_kendaraan;
     }
@@ -42,12 +55,14 @@ public class Transaksi {
         this.lama_penyewaan = lama_penyewaan;
     }
     public String getTanggal_penyewaan() {
-        DateTimeFormatter IniAdalahBentukFormatnya = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        return (tanggal_penyewaan.format(IniAdalahBentukFormatnya));     
+        DateTimeFormatter displayFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        return tanggal_penyewaan.format(displayFormatter);  
     }
-    public void setTanggal_penyewaan(String tanggal_penyewaan) {
-        DateTimeFormatter IniAdalahBentukFormatnya = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        this.tanggal_penyewaan = LocalDateTime.parse(tanggal_penyewaan, IniAdalahBentukFormatnya);
+    
+    public void setTanggal_penyewaan() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        String formattedDate = LocalDateTime.now().format(formatter);
+        this.tanggal_penyewaan = LocalDateTime.parse(formattedDate, formatter);
     }
 
     public Mobil getMobil() {

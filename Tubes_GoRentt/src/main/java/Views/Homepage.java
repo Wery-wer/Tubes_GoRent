@@ -13,6 +13,7 @@ import com.mycompany.tubes_gorentt.*;
 public class Homepage extends javax.swing.JPanel {
     ScreenData sd = new ScreenData();
     Object idValue;
+    Object tipe_kendaraan;
     /**
      * Creates new form Homepage
      */
@@ -106,8 +107,9 @@ public class Homepage extends javax.swing.JPanel {
         int selectedRow = jTable1.getSelectedRow();
         if (selectedRow != -1){
             idValue = jTable1.getValueAt(selectedRow, 1);
+            tipe_kendaraan  = jTable1.getValueAt(selectedRow, 2);
         }
-        TransaksiDialog trs = new TransaksiDialog(mn, true, idValue.toString());
+        TransaksiDialog trs = new TransaksiDialog(mn, true, idValue.toString(), tipe_kendaraan.toString());
         trs.setVisible(true);
          
     }//GEN-LAST:event_jTable1MouseClicked
