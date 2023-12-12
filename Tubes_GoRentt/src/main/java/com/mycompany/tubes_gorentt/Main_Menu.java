@@ -212,7 +212,7 @@ public class Main_Menu extends javax.swing.JFrame {
             .addGroup(WelcomePanelLayout.createSequentialGroup()
                 .addGap(199, 199, 199)
                 .addComponent(jLabel11)
-                .addContainerGap(228, Short.MAX_VALUE))
+                .addContainerGap(340, Short.MAX_VALUE))
         );
 
         MainMenuPanel.add(WelcomePanel, "card10");
@@ -236,7 +236,7 @@ public class Main_Menu extends javax.swing.JFrame {
             .addGroup(HomePanelLayout.createSequentialGroup()
                 .addGap(77, 77, 77)
                 .addComponent(jLabel9)
-                .addContainerGap(366, Short.MAX_VALUE))
+                .addContainerGap(478, Short.MAX_VALUE))
         );
 
         MainMenuPanel.add(HomePanel, "card2");
@@ -260,7 +260,7 @@ public class Main_Menu extends javax.swing.JFrame {
             .addGroup(TransaksiLayout.createSequentialGroup()
                 .addGap(38, 38, 38)
                 .addComponent(jLabel8)
-                .addContainerGap(405, Short.MAX_VALUE))
+                .addContainerGap(517, Short.MAX_VALUE))
         );
 
         MainMenuPanel.add(Transaksi, "card3");
@@ -276,7 +276,7 @@ public class Main_Menu extends javax.swing.JFrame {
         );
         PenyewaLayout.setVerticalGroup(
             PenyewaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 459, Short.MAX_VALUE)
+            .addGap(0, 571, Short.MAX_VALUE)
         );
 
         MainMenuPanel.add(Penyewa, "card4");
@@ -292,7 +292,7 @@ public class Main_Menu extends javax.swing.JFrame {
         );
         InputDataMobilLayout.setVerticalGroup(
             InputDataMobilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 459, Short.MAX_VALUE)
+            .addGap(0, 571, Short.MAX_VALUE)
         );
 
         MainMenuPanel.add(InputDataMobil, "card5");
@@ -308,7 +308,7 @@ public class Main_Menu extends javax.swing.JFrame {
         );
         InputDataMotorLayout.setVerticalGroup(
             InputDataMotorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 459, Short.MAX_VALUE)
+            .addGap(0, 571, Short.MAX_VALUE)
         );
 
         MainMenuPanel.add(InputDataMotor, "card6");
@@ -446,7 +446,7 @@ public class Main_Menu extends javax.swing.JFrame {
                     .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(12, 12, 12)
                 .addComponent(jButton9)
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addContainerGap(146, Short.MAX_VALUE))
         );
 
         MainMenuPanel.add(Kendaraan, "card7");
@@ -540,7 +540,7 @@ public class Main_Menu extends javax.swing.JFrame {
                         .addGap(4, 4, 4)
                         .addComponent(jLabel7))
                     .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(83, Short.MAX_VALUE))
+                .addContainerGap(195, Short.MAX_VALUE))
         );
 
         MainMenuPanel.add(Pembayaran, "card8");
@@ -556,7 +556,7 @@ public class Main_Menu extends javax.swing.JFrame {
         );
         PengembalianLayout.setVerticalGroup(
             PengembalianLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 459, Short.MAX_VALUE)
+            .addGap(0, 571, Short.MAX_VALUE)
         );
 
         MainMenuPanel.add(Pengembalian, "card9");
@@ -577,7 +577,7 @@ public class Main_Menu extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BodyPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(BodyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(MainMenuPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(MainMenuPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 579, Short.MAX_VALUE)
                     .addComponent(MenuPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -628,8 +628,6 @@ public class Main_Menu extends javax.swing.JFrame {
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         // TODO add your handling code here:
-        Transaksi trans = new Transaksi();
-        changePanel(trans);
 
     }//GEN-LAST:event_jButton7ActionPerformed
 
