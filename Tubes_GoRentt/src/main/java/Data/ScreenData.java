@@ -29,6 +29,11 @@ public class ScreenData {
         "No", "ID Kendaraan", "Tipe Kendaraan", "Merek", "Tanggal Pengembalian"
     });
     
+     public static DefaultTableModel tabeltransaksi = new DefaultTableModel(null,
+    new String [] {
+        "ID","Tanggal Penyewaan","Nama Penyewa", "Merek Kendaraan", "Total Bayar", "Status"
+    });
+    
     public void setarrMobil(){
         this.arrMobil = s.readm();
     }
@@ -43,12 +48,14 @@ public class ScreenData {
     }
     
     
+    
+    //tersedia
     public void settabeltersedia(){
         if(tabeltersedia.getRowCount() == 0){
             int idx = 1;
             for (int i = 0;i<arrMobil.size();i++) {
                 if(arrMobil.get(i).isKetersediaan()){
-                    tabeltersedia.addRow(new Object []{i+1, arrMobil.get(i).getId_kendaraan(),"Mobil", arrMobil.get(i).getMerek(), arrMobil.get(i).getTransmisi(), arrMobil.get(i).getKapasitas(), arrMobil.get(i).getHarga_sewa()});
+                    tabeltersedia.addRow(new Object []{idx, arrMobil.get(i).getId_kendaraan(),"Mobil", arrMobil.get(i).getMerek(), arrMobil.get(i).getTransmisi(), arrMobil.get(i).getKapasitas(), arrMobil.get(i).getHarga_sewa()});
                     idx++;
                 }
             
@@ -63,6 +70,21 @@ public class ScreenData {
         }
         
     }
+    
+    public void addtabeltersedia(Motor mtr,Mobil m) {
+        if(m != null){
+            tabeltersedia.addRow(new Object [] {tabeltersedia.getRowCount()+1,m.getId_kendaraan(),"Mobil",m.getMerek(),m.getTransmisi(),m.getKapasitas(),m.getHarga_sewa()});
+
+        }else if (mtr != null){
+            tabeltersedia.addRow(new Object [] {tabeltersedia.getRowCount()+1,mtr.getId_kendaraan(),"Motor",mtr.getMerek(),mtr.getTransmisi(),2,mtr.getHarga_sewa()});
+
+        }
+        
+    }
+    
+    
+    
+    
     //TERSEWA
     public void settabeltersewa(){
         if (tabeltersewa.getRowCount() == 0){
@@ -76,32 +98,49 @@ public class ScreenData {
                     idx++;
                 }
             }
-        }
-        
+        }   
     }
     
-
-    public void addtabeltersedia(Motor mtr,Mobil m) {
-        if(m != null){
-            tabeltersedia.addRow(new Object [] {tabeltersedia.getRowCount()+1,m.getId_kendaraan(),"Mobil",m.getMerek(),m.getTransmisi(),m.getKapasitas(),m.getHarga_sewa()});
-            tabeltersedia.fireTableDataChanged();
-        }else if (mtr != null){
-            tabeltersedia.addRow(new Object [] {tabeltersedia.getRowCount()+1,mtr.getId_kendaraan(),"Motor",mtr.getMerek(),mtr.getTransmisi(),2,mtr.getHarga_sewa()});
-            tabeltersedia.fireTableDataChanged();
-        }
-        
-    }
     
     public void addtabeltersewa(Transaksi t) {
         if (t.getMobil() != null){
-            tabeltersewa.addRow(new Object [] {tabeltersewa.getRowCount()+1,t.getMobil().getId_kendaraan(),"Mobil",t.getMobil().getMerek(),t.getTanggal_penyewaan()});
-            tabeltersewa.fireTableDataChanged();
+            tabeltersewa.addRow(new Object [] {tabeltersewa.getRowCount()+1,t.getMobil().getId_kendaraan(),"Mobil",t.getMobil().getMerek(),t.getTanggalPengembalian()});
+
         }else if (t.getMotor() != null){
-            tabeltersewa.addRow(new Object [] {tabeltersewa.getRowCount()+1,t.getMotor().getId_kendaraan(),"Motor",t.getMotor().getMerek(),t.getTanggal_penyewaan()});
-            tabeltersewa.fireTableDataChanged();
+            tabeltersewa.addRow(new Object [] {tabeltersewa.getRowCount()+1,t.getMotor().getId_kendaraan(),"Motor",t.getMotor().getMerek(),t.getTanggalPengembalian()});
+
         }
         
     }
+    
+    
+    //transaksi
+    public void settabeltransaksi(){
+        if (tabeltransaksi.getRowCount() == 0){
+            int idx = 0;
+            for (int i = 0;i<arrTransaksi.size();i++) {
+                if (arrTransaksi.get(i).getMobil() != null){
+                    tabeltransaksi.addRow(new Object[] {arrTransaksi.get(i).getId_transaksi(),arrTransaksi.get(i).getTanggal_penyewaan(),arrTransaksi.get(i).getData_penyewa().getNama(),arrTransaksi.get(i).getMobil().getMerek(),arrTransaksi.get(i).getTotal_harga(),arrTransaksi.get(i).cek_status_bayar()});
+                    idx++;
+                }else if(arrTransaksi.get(i).getMotor() != null){
+                    tabeltransaksi.addRow(new Object[] {arrTransaksi.get(i).getId_transaksi(),arrTransaksi.get(i).getTanggal_penyewaan(),arrTransaksi.get(i).getData_penyewa().getNama(),arrTransaksi.get(i).getMotor().getMerek(),arrTransaksi.get(i).getTotal_harga(),arrTransaksi.get(i).cek_status_bayar()});
+                    idx++;
+                }
+            }
+        }
+    }
+    
+    public void addtabeltransaksi(Transaksi t){
+        if (t.getMobil() != null){
+            tabeltransaksi.addRow(new Object [] {t.getId_transaksi(),t.getTanggal_penyewaan(),t.getData_penyewa().getNama(),t.getMobil().getMerek(),t.getTotal_harga(),t.cek_status_bayar()});
+
+        }else if (t.getMotor() != null){
+            tabeltransaksi.addRow(new Object [] {t.getId_transaksi(),t.getTanggal_penyewaan(),t.getData_penyewa().getNama(),t.getMotor().getMerek(),t.getTotal_harga(),t.cek_status_bayar()});
+
+        }
+    }
+    
+    
     
     public Motor getMotor(String id_kendaraan){
         for (Motor motor : arrMotor) {

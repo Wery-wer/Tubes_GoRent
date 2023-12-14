@@ -5,7 +5,8 @@
 package Model;
 import java.io.Serializable;
 import java.time.*;
-import java.time.format.*;;
+import java.time.format.*;
+
 
 /**
  *
@@ -17,7 +18,7 @@ public class Transaksi implements Serializable{
     private int lama_penyewaan, total_harga;
     private Pembayaran pembayaran; 
     private Pengembalian pengembalian;
-    private LocalDateTime tanggal_penyewaan;
+    private LocalDate tanggal_penyewaan;
     private Penyewa data_penyewa;
     private Mobil mobil; 
     private Motor motor;
@@ -27,16 +28,25 @@ public class Transaksi implements Serializable{
         this.id_kendaraan = id_kendaraan;
         this.lama_penyewaan = lama_penyewaan;
         this.total_harga = total_harga;
-        this.tanggal_penyewaan = LocalDateTime.now();
+        this.tanggal_penyewaan = LocalDate.now();
         this.data_penyewa = data_penyewa;
         this.mobil = mobil;
         this.motor = motor;
+        createPembayaran(total_harga);
     }
     
     
 
     public String getId_kendaraan() {
         return id_kendaraan;
+    }
+
+    public Penyewa getData_penyewa() {
+        return data_penyewa;
+    }
+
+    public void setData_penyewa(Penyewa data_penyewa) {
+        this.data_penyewa = data_penyewa;
     }
 
     public void setId_kendaraan(String id_kendaraan) {
@@ -55,15 +65,14 @@ public class Transaksi implements Serializable{
     public void setLama_penyewaan(int lama_penyewaan) {
         this.lama_penyewaan = lama_penyewaan;
     }
-    public String getTanggal_penyewaan() {
-        DateTimeFormatter displayFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        return tanggal_penyewaan.format(displayFormatter);  
+    public LocalDate getTanggal_penyewaan() {
+        return this.tanggal_penyewaan; 
     }
     
     public void setTanggal_penyewaan() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         String formattedDate = LocalDateTime.now().format(formatter);
-        this.tanggal_penyewaan = LocalDateTime.parse(formattedDate, formatter);
+        this.tanggal_penyewaan = LocalDate.parse(formattedDate, formatter);
     }
 
     public Mobil getMobil() {
@@ -93,6 +102,11 @@ public class Transaksi implements Serializable{
     public void createPembayaran(int jumlah_bayar) {
         this.pembayaran = new Pembayaran();
         this.pembayaran.setJumlah_bayar(jumlah_bayar);
+    }
+    
+    public LocalDate getTanggalPengembalian(){
+        LocalDate dt = this.tanggal_penyewaan.plusDays(this.getLama_penyewaan());
+        return dt;
     }
     
     

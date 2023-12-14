@@ -6,6 +6,7 @@ package Views;
 
 import Data.*;
 import Model.*;
+import com.mycompany.tubes_gorentt.Main_Menu;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 
@@ -16,15 +17,17 @@ import javax.swing.DefaultComboBoxModel;
 public class TransaksiDialog extends javax.swing.JDialog {
     String id_value;
     String tipe_kendaraan;
+    int index;
     ScreenData sd = new ScreenData();
     Save sv = new Save();
     /**
      * Creates new form TransaksiDialog
      */
-    public TransaksiDialog(java.awt.Frame parent, boolean modal, String idValue, String tipe_kendaraan) {
+    public TransaksiDialog(java.awt.Frame parent, boolean modal, String idValue, String tipe_kendaraan,int index) {
         super(parent, modal);
         this.id_value = idValue;
         this.tipe_kendaraan = tipe_kendaraan;
+        this.index = index;
         initComponents();
         
         
@@ -58,6 +61,11 @@ public class TransaksiDialog extends javax.swing.JDialog {
         jSpinner2 = new javax.swing.JSpinner();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jLabel8.setText("Nama Penyewa");
 
@@ -219,29 +227,38 @@ public class TransaksiDialog extends javax.swing.JDialog {
             Motor mtr = sd.getMotor(id_value);
             Mobil mbl = null;
             Transaksi trs = new Transaksi(id_trans, id_value, lama_penyewaan, total_harga, pnyw, mbl, mtr);
-            System.out.println("tesssss"+sd.arrMotor.indexOf(mtr));
             sd.arrMotor.get(sd.arrMotor.indexOf(mtr)).setKetersediaan(false);
             sv.writemtr(sd.arrMotor);
             sd.arrTransaksi.add(trs);
             sv.writetransaksi(sd.arrTransaksi);
             sd.addtabeltersewa(trs);
+            sd.addtabeltransaksi(trs);
+            sd.tabeltersedia.removeRow(index);
+            
         } else if(tipe_kendaraan.equals("Mobil")){
             Motor mtr = null;
             Mobil mbl = sd.getMobil(id_value);
-            System.out.println("tesssss"+sd.arrMobil.indexOf(mbl));
             sd.arrMobil.get(sd.arrMobil.indexOf(mbl)).setKetersediaan(false);
             Transaksi trs = new Transaksi(id_trans, id_value, lama_penyewaan, total_harga, pnyw, mbl, mtr);
             sv.writem(sd.arrMobil);
             sd.arrTransaksi.add(trs);
             sv.writetransaksi(sd.arrTransaksi);
             sd.addtabeltersewa(trs);
+            sd.addtabeltransaksi(trs);
+            sd.tabeltersedia.removeRow(index);
         }
         
         
-        this.setVisible(false);
+        
+        
+        dispose();
         
      
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+
+    }//GEN-LAST:event_formWindowClosing
 
     /**
      * @param args the command line arguments
@@ -273,7 +290,7 @@ public class TransaksiDialog extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                TransaksiDialog dialog = new TransaksiDialog(new javax.swing.JFrame(), true, "", "");
+                TransaksiDialog dialog = new TransaksiDialog(new javax.swing.JFrame(), true, "", "",0);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

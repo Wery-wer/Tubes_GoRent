@@ -17,7 +17,7 @@ public class Pembayaran implements Serializable {
     private boolean status_bayar;
     private String metode_bayar;
     private int jumlah_bayar;
-
+    
     public String getId_pembayaran() {
         return id_pembayaran;
     }

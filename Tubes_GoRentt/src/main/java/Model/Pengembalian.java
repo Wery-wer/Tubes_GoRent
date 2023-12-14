@@ -5,6 +5,7 @@
 package Model;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Date;
 
 /**
@@ -13,10 +14,19 @@ import java.util.Date;
  */
 public class Pengembalian implements Serializable{
     private Pembayaran pembayaran;
-    private Date tanggal_kembali;
+    private LocalDate tanggal_kembali;
     private int denda;
     private boolean status_pengembalian;
 
+    public Pengembalian(Pembayaran pembayaran, LocalDate tanggal_kembali, int denda, boolean status_pengembalian) {
+        this.pembayaran = pembayaran;
+        this.tanggal_kembali = tanggal_kembali;
+        this.denda = denda;
+        this.status_pengembalian = status_pengembalian;
+    }
+
+    
+    
     public Pembayaran getPembayaran() {
         return pembayaran;
     }
@@ -25,11 +35,11 @@ public class Pengembalian implements Serializable{
         this.pembayaran = pembayaran;
     }
 
-    public Date getTanggal_kembali() {
+    public LocalDate getTanggal_kembali() {
         return tanggal_kembali;
     }
 
-    public void setTanggal_kembali(Date tanggal_kembali) {
+    public void setTanggal_kembali(LocalDate tanggal_kembali) {
         this.tanggal_kembali = tanggal_kembali;
     }
 
@@ -49,12 +59,14 @@ public class Pengembalian implements Serializable{
         this.status_pengembalian = status_pengembalian;
     }
     
-    public void createPembayaran(int jumlah_bayar){
+    public void createPembayaran(int jumlah_bayar) {
         this.pembayaran = new Pembayaran();
-        
+        this.pembayaran.setJumlah_bayar(jumlah_bayar);
     }
     
     public boolean cek_status_bayar(){
         return this.pembayaran.getStatus_bayar();
     }
+    
+    
 }

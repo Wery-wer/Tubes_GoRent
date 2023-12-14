@@ -14,6 +14,7 @@ public class Homepage extends javax.swing.JPanel {
     ScreenData sd = new ScreenData();
     Object idValue;
     Object tipe_kendaraan;
+    Object pengembalian;
     /**
      * Creates new form Homepage
      */
@@ -109,7 +110,7 @@ public class Homepage extends javax.swing.JPanel {
             idValue = jTable1.getValueAt(selectedRow, 1);
             tipe_kendaraan  = jTable1.getValueAt(selectedRow, 2);
         }
-        TransaksiDialog trs = new TransaksiDialog(mn, true, idValue.toString(), tipe_kendaraan.toString());
+        TransaksiDialog trs = new TransaksiDialog(mn, true, idValue.toString(), tipe_kendaraan.toString(),selectedRow);
         trs.setVisible(true);
          
     }//GEN-LAST:event_jTable1MouseClicked
@@ -118,10 +119,11 @@ public class Homepage extends javax.swing.JPanel {
         // TODO add your handling code here:
         Main_Menu main = new Main_Menu();
         int selectedRow = jTable2.getSelectedRow();
-//        if (selectedRow != -1){
-//            idValue = jTable2.getValueAt(selectedRow, 1);
-//        }
-        PengembalianDialog pgd = new PengembalianDialog(main, true,idValue.toString());
+        if (selectedRow != -1){
+            idValue = jTable2.getValueAt(selectedRow, 1);
+            pengembalian = jTable2.getValueAt(selectedRow, 4);
+        }
+        PengembalianDialog pgd = new PengembalianDialog(main, true,idValue.toString(),pengembalian.toString(),selectedRow);
         pgd.setVisible(true);
     }//GEN-LAST:event_jTable2MouseClicked
 

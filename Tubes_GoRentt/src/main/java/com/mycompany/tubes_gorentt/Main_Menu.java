@@ -25,6 +25,7 @@ public class Main_Menu extends javax.swing.JFrame {
         sd.setarrMotor();
         sd.settabeltersedia();
         sd.settabeltersewa();
+        sd.settabeltransaksi();
         initComponents();
         
     }
