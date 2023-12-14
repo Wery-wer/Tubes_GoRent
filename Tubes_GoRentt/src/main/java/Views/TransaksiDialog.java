@@ -53,12 +53,10 @@ public class TransaksiDialog extends javax.swing.JDialog {
         jLabel6 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jSpinner1 = new javax.swing.JSpinner();
-        jSpinner2 = new javax.swing.JSpinner();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -97,8 +95,6 @@ public class TransaksiDialog extends javax.swing.JDialog {
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel1.setText("Input Data Transaksi - GoRent");
-
-        jLabel7.setText("Total Harga");
 
         jLabel2.setText("ID Transaksi");
 
@@ -142,13 +138,9 @@ public class TransaksiDialog extends javax.swing.JDialog {
                             .addComponent(jLabel1)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel6)
-                                .addComponent(jLabel7))
+                            .addComponent(jLabel6)
                             .addGap(81, 81, 81)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jSpinner1, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
-                                .addComponent(jSpinner2)))
+                            .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel2)
@@ -162,7 +154,7 @@ public class TransaksiDialog extends javax.swing.JDialog {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(46, 46, 46)
+                .addGap(80, 80, 80)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -176,11 +168,7 @@ public class TransaksiDialog extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(34, 34, 34)
+                .addGap(42, 42, 42)
                 .addComponent(jLabel9)
                 .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -221,12 +209,11 @@ public class TransaksiDialog extends javax.swing.JDialog {
         String id_trans = jTextField1.getText();
         String id_kendaraan = this.id_value;
         int lama_penyewaan = (int) jSpinner1.getValue();
-        int total_harga = (int) jSpinner2.getValue();
         
         if (tipe_kendaraan.equals("Motor")){
             Motor mtr = sd.getMotor(id_value);
             Mobil mbl = null;
-            Transaksi trs = new Transaksi(id_trans, id_value, lama_penyewaan, total_harga, pnyw, mbl, mtr);
+            Transaksi trs = new Transaksi(id_trans, id_value, lama_penyewaan, mtr.getHarga_sewa(), pnyw, mbl, mtr);
             sd.arrMotor.get(sd.arrMotor.indexOf(mtr)).setKetersediaan(false);
             sv.writemtr(sd.arrMotor);
             sd.arrTransaksi.add(trs);
@@ -238,7 +225,7 @@ public class TransaksiDialog extends javax.swing.JDialog {
             Motor mtr = null;
             Mobil mbl = sd.getMobil(id_value);
             sd.arrMobil.get(sd.arrMobil.indexOf(mbl)).setKetersediaan(false);
-            Transaksi trs = new Transaksi(id_trans, id_value, lama_penyewaan, total_harga, pnyw, mbl, mtr);
+            Transaksi trs = new Transaksi(id_trans, id_value, lama_penyewaan, mbl.getHarga_sewa(), pnyw, mbl, mtr);
             sv.writem(sd.arrMobil);
             sd.arrTransaksi.add(trs);
             sv.writetransaksi(sd.arrTransaksi);
@@ -309,11 +296,9 @@ public class TransaksiDialog extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JSpinner jSpinner1;
-    private javax.swing.JSpinner jSpinner2;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField3;
