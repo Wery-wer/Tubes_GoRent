@@ -90,12 +90,16 @@ public class ScreenData {
         if (tabeltersewa.getRowCount() == 0){
             int idx = 0;
             for (int i = 0;i<arrTransaksi.size();i++) {
-                if (arrTransaksi.get(i).getMobil() != null){
-                    tabeltersewa.addRow(new Object[] {idx+1,arrTransaksi.get(i).getId_kendaraan(),"Mobil",arrTransaksi.get(i).getMobil().getMerek(),arrTransaksi.get(i).getTanggal_penyewaan()});
-                    idx++;
-                }else if(arrTransaksi.get(i).getMotor() != null){
-                    tabeltersewa.addRow(new Object[] {idx+1,arrTransaksi.get(i).getId_kendaraan(),"Motor",arrTransaksi.get(i).getMotor().getMerek(),arrTransaksi.get(i).getTanggal_penyewaan()});
-                    idx++;
+                if(arrTransaksi.get(i).cek_status_bayar()){
+                    
+                
+                    if (arrTransaksi.get(i).getMobil() != null){
+                        tabeltersewa.addRow(new Object[] {idx+1,arrTransaksi.get(i).getId_kendaraan(),"Mobil",arrTransaksi.get(i).getMobil().getMerek(),arrTransaksi.get(i).getTanggal_penyewaan()});
+                        idx++;
+                    }else if(arrTransaksi.get(i).getMotor() != null){
+                        tabeltersewa.addRow(new Object[] {idx+1,arrTransaksi.get(i).getId_kendaraan(),"Motor",arrTransaksi.get(i).getMotor().getMerek(),arrTransaksi.get(i).getTanggal_penyewaan()});
+                        idx++;
+                    }
                 }
             }
         }   

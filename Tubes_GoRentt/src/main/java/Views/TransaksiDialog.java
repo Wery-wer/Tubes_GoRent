@@ -231,9 +231,8 @@ public class TransaksiDialog extends javax.swing.JDialog {
             sv.writemtr(sd.arrMotor);
             sd.arrTransaksi.add(trs);
             sv.writetransaksi(sd.arrTransaksi);
-            sd.addtabeltersewa(trs);
             sd.addtabeltransaksi(trs);
-            sd.tabeltersedia.removeRow(index);
+           //sd.tabeltersedia.removeRow(index);
             
         } else if(tipe_kendaraan.equals("Mobil")){
             Motor mtr = null;
@@ -243,9 +242,8 @@ public class TransaksiDialog extends javax.swing.JDialog {
             sv.writem(sd.arrMobil);
             sd.arrTransaksi.add(trs);
             sv.writetransaksi(sd.arrTransaksi);
-            sd.addtabeltersewa(trs);
             sd.addtabeltransaksi(trs);
-            sd.tabeltersedia.removeRow(index);
+            //sd.tabeltersedia.removeRow(index);
         }
         
         

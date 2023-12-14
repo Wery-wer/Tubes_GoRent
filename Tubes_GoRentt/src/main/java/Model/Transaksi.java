@@ -108,6 +108,14 @@ public class Transaksi implements Serializable{
         LocalDate dt = this.tanggal_penyewaan.plusDays(this.getLama_penyewaan());
         return dt;
     }
+
+    public Pembayaran getPembayaran() {
+        return pembayaran;
+    }
+
+    public void setPembayaran(Pembayaran pembayaran) {
+        this.pembayaran = pembayaran;
+    }
     
     
 }
