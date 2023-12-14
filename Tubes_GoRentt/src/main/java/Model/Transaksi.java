@@ -33,6 +33,7 @@ public class Transaksi implements Serializable{
         this.mobil = mobil;
         this.motor = motor;
         createPembayaran(total_harga);
+        
     }
     
     
@@ -99,9 +100,11 @@ public class Transaksi implements Serializable{
     public boolean cek_status_bayar() {
         return (pembayaran.getStatus_bayar());
     }
-    public void createPembayaran(int jumlah_bayar) {
+    public final void createPembayaran(int jumlah_bayar) {
         this.pembayaran = new Pembayaran();
+        this.pembayaran.setId_pembayaran(id_kendaraan+"_1");
         this.pembayaran.setJumlah_bayar(jumlah_bayar);
+        this.pembayaran.setStatus_bayar(false);
     }
     
     public LocalDate getTanggalPengembalian(){
@@ -116,6 +119,7 @@ public class Transaksi implements Serializable{
     public void setPembayaran(Pembayaran pembayaran) {
         this.pembayaran = pembayaran;
     }
+    
     
     
 }

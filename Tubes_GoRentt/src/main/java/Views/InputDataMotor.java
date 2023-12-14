@@ -162,6 +162,7 @@ public class InputDataMotor extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(null, "Inputan tidak boleh kosong");
             } else {
                 Motor m = new Motor(merek, harga_sewa , ketersediaan, id_kendaraan, transmisi);
+                m.addAsuransi();
                 sd.arrMotor.add(m);
                 sd.addtabeltersedia(m,null);
                 s.writemtr(sd.arrMotor);

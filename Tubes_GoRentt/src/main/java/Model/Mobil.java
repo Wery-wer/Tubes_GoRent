@@ -28,6 +28,7 @@ public class Mobil extends Kendaraan implements Asuransi, Serializable{
     
     @Override
     public void addAsuransi() {
+        this.setHarga_sewa(this.getHarga_sewa()+konstanta_asuransi_mobil);
     }
     
     @Override

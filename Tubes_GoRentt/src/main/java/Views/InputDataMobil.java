@@ -186,6 +186,7 @@ public class InputDataMobil extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(null, "Inputan tidak boleh kosong");
             } else {
                 Mobil m = new Mobil(kapasitas, merek, harga_sewa, ketersediaan, id_kendaraan, transmisi);
+                m.addAsuransi();
                 sd.arrMobil.add(m);
                 sd.addtabeltersedia(null,m);
                 s.writem(sd.arrMobil);
