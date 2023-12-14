@@ -120,6 +120,12 @@ public class Transaksi implements Serializable{
         this.pembayaran = pembayaran;
     }
     
+    @Override
+    public boolean equals (Object obj){
+        Transaksi trs = (Transaksi) obj;
+        return this.getId_transaksi().equalsIgnoreCase(trs.getId_kendaraan());
+    }
+    
     
     
 }

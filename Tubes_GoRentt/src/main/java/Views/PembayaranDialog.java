@@ -3,18 +3,25 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
 package Views;
-
+import Data.*;
+import Model.*;
+import java.time.LocalDate;
 /**
  *
  * @author User
  */
 public class PembayaranDialog extends javax.swing.JDialog {
-
+    Object id_transaksi;
+    ScreenData sd = new ScreenData();
+    
     /**
      * Creates new form PembayaranDialog
      */
-    public PembayaranDialog(java.awt.Frame parent, boolean modal) {
+    public PembayaranDialog(java.awt.Frame parent, boolean modal, Object id_transaksi) {
         super(parent, modal);
+        this.id_transaksi = id_transaksi;
+        
+        
         initComponents();
     }
 
@@ -95,6 +102,13 @@ public class PembayaranDialog extends javax.swing.JDialog {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        Transaksi trs = sd.getTransaksi(id_transaksi);
+        trs.getPembayaran().setStatus_bayar(true);
+        trs.getPembayaran().setMetode_bayar(jComboBox1.getSelectedItem().toString());
+        trs.getPembayaran().setTanggal_bayar(LocalDate.now());
+        
+        System.out.println(sd.getTransaksi(id_transaksi).getPembayaran().getStatus_bayar());
+        dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -127,7 +141,7 @@ public class PembayaranDialog extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                PembayaranDialog dialog = new PembayaranDialog(new javax.swing.JFrame(), true);
+                PembayaranDialog dialog = new PembayaranDialog(new javax.swing.JFrame(), true, null);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

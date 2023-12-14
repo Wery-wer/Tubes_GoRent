@@ -3,7 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package Views;
-import Data.ScreenData;
+import Data.*;
+import Model.*;
 import com.mycompany.tubes_gorentt.Main_Menu;
 /**
  *
@@ -11,6 +12,7 @@ import com.mycompany.tubes_gorentt.Main_Menu;
  */
 public class TabelTransaksi extends javax.swing.JPanel {
     ScreenData sd = new ScreenData();
+    Object id_transaksi;
     /**
      * Creates new form TabelTransaksi
      */
@@ -37,6 +39,7 @@ public class TabelTransaksi extends javax.swing.JPanel {
         jTable2.setModel(sd.tabeltransaksi);
         jTable2.setRowHeight(30);
         jTable2.setShowGrid(true);
+        jTable2.getTableHeader().setReorderingAllowed(false);
         jTable2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTable2MouseClicked(evt);
@@ -70,7 +73,13 @@ public class TabelTransaksi extends javax.swing.JPanel {
 
     private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
         // TODO add your handling code here:
-        
+        Main_Menu mn = new Main_Menu();
+        int selectedRow = jTable2.getSelectedRow();
+        if (selectedRow != -1){
+            id_transaksi = jTable2.getValueAt(selectedRow, 0);
+        }
+        PembayaranDialog pmb = new PembayaranDialog(mn, true, id_transaksi);
+        pmb.setVisible(true);
     }//GEN-LAST:event_jTable2MouseClicked
     
     

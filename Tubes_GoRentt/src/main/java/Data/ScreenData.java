@@ -164,7 +164,14 @@ public class ScreenData {
         return null;
     }
 
-    
+    public Transaksi getTransaksi(Object id_transaksi) {
+        for (Transaksi trs : arrTransaksi) {
+            if (trs.getId_transaksi().equals(id_transaksi)) {
+                return trs; // Motor ditemukan
+            }
+        }
+        return null;
+    }
     
     
 }

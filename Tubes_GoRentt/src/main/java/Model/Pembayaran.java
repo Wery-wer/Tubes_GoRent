@@ -5,6 +5,7 @@
 package Model;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Date;
 
 /**
@@ -13,7 +14,7 @@ import java.util.Date;
  */
 public class Pembayaran implements Serializable {
     private String id_pembayaran;
-    private Date tanggal_bayar;
+    private LocalDate tanggal_bayar;
     private boolean status_bayar;
     private String metode_bayar;
     private int jumlah_bayar;
@@ -26,11 +27,11 @@ public class Pembayaran implements Serializable {
         this.id_pembayaran = id_pembayaran;
     }
 
-    public Date getTanggal_bayar() {
+    public LocalDate getTanggal_bayar() {
         return tanggal_bayar;
     }
 
-    public void setTanggal_bayar(Date tanggal_bayar) {
+    public void setTanggal_bayar(LocalDate tanggal_bayar) {
         this.tanggal_bayar = tanggal_bayar;
     }
 
