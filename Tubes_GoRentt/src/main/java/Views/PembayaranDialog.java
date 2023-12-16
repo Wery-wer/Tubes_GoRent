@@ -12,14 +12,17 @@ import java.time.LocalDate;
  */
 public class PembayaranDialog extends javax.swing.JDialog {
     Object id_transaksi;
+    int selectedRow;
     ScreenData sd = new ScreenData();
+    Save sv = new Save();
     
     /**
      * Creates new form PembayaranDialog
      */
-    public PembayaranDialog(java.awt.Frame parent, boolean modal, Object id_transaksi) {
+    public PembayaranDialog(java.awt.Frame parent, boolean modal, Object id_transaksi, int selectedRow) {
         super(parent, modal);
         this.id_transaksi = id_transaksi;
+        this.selectedRow = selectedRow;
         
         
         initComponents();
@@ -102,12 +105,14 @@ public class PembayaranDialog extends javax.swing.JDialog {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        Transaksi trs = sd.getTransaksi(id_transaksi);
+        Transaksi trs = sd.getTransaksi(id_transaksi.toString());
         trs.getPembayaran().setStatus_bayar(true);
         trs.getPembayaran().setMetode_bayar(jComboBox1.getSelectedItem().toString());
         trs.getPembayaran().setTanggal_bayar(LocalDate.now());
         
-        System.out.println(sd.getTransaksi(id_transaksi).getPembayaran().getStatus_bayar());
+        System.out.println(sd.getTransaksi(id_transaksi.toString()).getPembayaran().getStatus_bayar());
+        sd.updatetabletransaksi(selectedRow);
+        sv.writetransaksi(sd.arrTransaksi);
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -141,7 +146,7 @@ public class PembayaranDialog extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                PembayaranDialog dialog = new PembayaranDialog(new javax.swing.JFrame(), true, null);
+                PembayaranDialog dialog = new PembayaranDialog(new javax.swing.JFrame(), true, null,0);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

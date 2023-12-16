@@ -44,7 +44,6 @@ public class ScreenData {
     
     public void setarrTransaksi(){
         this.arrTransaksi = s.readTransaksi();
-        System.out.println(arrTransaksi);
     }
     
     
@@ -164,12 +163,13 @@ public class ScreenData {
         return null;
     }
 
-    public Transaksi getTransaksi(Object id_transaksi) {
+    public Transaksi getTransaksi(String id_transaksi) {
         for (Transaksi trs : arrTransaksi) {
             if (trs.getId_transaksi().equals(id_transaksi)) {
                 return trs; // Motor ditemukan
             }
         }
+
         return null;
     }
     

@@ -93,7 +93,6 @@ public class Save {
     }
     
     public ArrayList<Transaksi> readTransaksi(){
-        System.out.println("1111111");
         File fm = new File("./data/transaksi.data");
         ArrayList<Transaksi> output = new ArrayList<Transaksi>();
     
@@ -101,11 +100,9 @@ public class Save {
             
             FileInputStream fis = new FileInputStream(fm);
             ObjectInputStream ois = new ObjectInputStream(fis);
-            System.out.println("2222222");
             ArrayList<Transaksi> m = (ArrayList<Transaksi>)ois.readObject();
             
             for (Transaksi transaksi : m){
-                System.out.println("wowowowo"+transaksi);
                 output.add(transaksi);
             }
         }catch (Exception e){
