@@ -173,5 +173,9 @@ public class ScreenData {
         return null;
     }
     
-    
+    public void updatetabletransaksi(int row){
+        Object[] o = new Object[]{tabeltransaksi.getValueAt(row, 0),tabeltransaksi.getValueAt(row, 1),tabeltransaksi.getValueAt(row, 2),tabeltransaksi.getValueAt(row, 3),tabeltransaksi.getValueAt(row, 4),true};
+        tabeltransaksi.removeRow(row);
+        tabeltransaksi.addRow(o);
+    }   
 }
