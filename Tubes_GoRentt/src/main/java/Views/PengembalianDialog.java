@@ -5,12 +5,17 @@
 package Views;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
+import Model.Pembayaran;
+import Model.Pengembalian;
+import javax.swing.JOptionPane;
 /**
  *
  * @author Holanta
  */
 public class PengembalianDialog extends javax.swing.JDialog {
+    Pengembalian peng;
     String idValue;
     String pengembalian;
     int idx;
@@ -53,6 +58,17 @@ public class PengembalianDialog extends javax.swing.JDialog {
         jLabel5.setText("Pembayaran");
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cash", "Debit" }));
+        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox2ActionPerformed(evt);
+            }
+        });
+
+        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField2ActionPerformed(evt);
+            }
+        });
 
         jButton1.setText("Save");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -129,13 +145,35 @@ public class PengembalianDialog extends javax.swing.JDialog {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        try {
+            String denda_String = jTextField2.getText();
+            String jenisPembayaran = (String) jComboBox2.getSelectedItem();
+            denda = Integer.parseInt(denda_String);
+            LocalDate waktu_kembali = LocalDate.parse(kembali, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+            Pembayaran pem = new Pembayaran();
+            pem.setMetode_bayar(jenisPembayaran);
+
+            peng = new Pengembalian(pem, waktu_kembali, denda, true);
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Masukkan angka yang valid untuk denda", "Kesalahan", JOptionPane.ERROR_MESSAGE);
+        }
+
+
 
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox2ActionPerformed
+
+    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField2ActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+        public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
