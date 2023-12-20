@@ -49,8 +49,11 @@ public class ScreenData {
     
     
     //tersedia
-    public void settabeltersedia(){
-        if(tabeltersedia.getRowCount() == 0){
+    public void settabeltersedia(){ 
+        tabeltersedia = new DefaultTableModel(null,
+    new String [] {
+        "No", "ID Kendaraan", "Tipe Kendaraan", "Merek", "Transmisi", "Kapasitas", "Harga"
+    });
             int idx = 1;
             for (int i = 0;i<arrMobil.size();i++) {
                 if(arrMobil.get(i).isKetersediaan()){
@@ -66,7 +69,6 @@ public class ScreenData {
                 idx++;
                 }
             }
-        }
         
     }
     
@@ -86,7 +88,10 @@ public class ScreenData {
     
     //TERSEWA
     public void settabeltersewa(){
-        if (tabeltersewa.getRowCount() == 0){
+        tabeltersewa = new DefaultTableModel(null,
+    new String [] {
+        "No", "ID Kendaraan", "Tipe Kendaraan", "Merek", "Tanggal Pengembalian"
+    });
             int idx = 0;
             for (int i = 0;i<arrTransaksi.size();i++) {
                 if(arrTransaksi.get(i).cek_status_bayar()){
@@ -100,8 +105,7 @@ public class ScreenData {
                         idx++;
                     }
                 }
-            }
-        }   
+            } 
     }
     
     
@@ -119,7 +123,10 @@ public class ScreenData {
     
     //transaksi
     public void settabeltransaksi(){
-        if (tabeltransaksi.getRowCount() == 0){
+        tabeltransaksi = new DefaultTableModel(null,
+    new String [] {
+        "ID","Tanggal Penyewaan","Nama Penyewa", "Merek Kendaraan", "Total Bayar", "Status"
+    });
             int idx = 0;
             for (int i = 0;i<arrTransaksi.size();i++) {
                 if (arrTransaksi.get(i).getMobil() != null){
@@ -130,7 +137,6 @@ public class ScreenData {
                     idx++;
                 }
             }
-        }
     }
     
     public void addtabeltransaksi(Transaksi t){

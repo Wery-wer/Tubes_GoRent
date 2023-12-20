@@ -4,6 +4,7 @@
 
 package com.mycompany.tubes_gorentt;
 
+import Data.JDBC;
 import Data.Save;
 import Model.Mobil;
 import java.util.ArrayList;
@@ -15,29 +16,31 @@ import java.util.ArrayList;
 public class Tubes_GoRentt {
 
     public static void main(String[] args) {
-        Save s = new Save();
-        
-//        Mobil m = new Mobil(1,"m",10,true,"sada","manual");
-//        ArrayList<Mobil> arr = new ArrayList<Mobil>();
-//        arr.add(m);
+//        Save s = new Save();
 //        
-//        m = new Mobil(1,"m",10,true,"sasadsa","manual");
-//        arr.add(m);
-//        m = new Mobil(1,"m",10,true,"fgdfgfd","manual");
-//        arr.add(m);
-//        s.writem(arr);
+////        Mobil m = new Mobil(1,"m",10,true,"sada","manual");
+////        ArrayList<Mobil> arr = new ArrayList<Mobil>();
+////        arr.add(m);
+////        
+////        m = new Mobil(1,"m",10,true,"sasadsa","manual");
+////        arr.add(m);
+////        m = new Mobil(1,"m",10,true,"fgdfgfd","manual");
+////        arr.add(m);
+////        s.writem(arr);
+//
+//        Mobil m = new Mobil(1,"m",10,true,"sada","manual");
+////        ArrayList<Mobil> arr = new ArrayList<Mobil>();
+////        arr.add(m);
+////        s.writem(arr);
+//        
+//        ArrayList<Mobil> hasil = new ArrayList<Mobil>();
+//        hasil = s.readm();
+//        
+//        //System.out.println(hasil.getFirst().getMerek());
+//        System.out.println("adsadas");
+//        System.out.println(hasil.contains(m));
 
-        Mobil m = new Mobil(1,"m",10,true,"sada","manual");
-//        ArrayList<Mobil> arr = new ArrayList<Mobil>();
-//        arr.add(m);
-//        s.writem(arr);
-        
-        ArrayList<Mobil> hasil = new ArrayList<Mobil>();
-        hasil = s.readm();
-        
-        //System.out.println(hasil.getFirst().getMerek());
-        System.out.println("adsadas");
-        System.out.println(hasil.contains(m));
+          JDBC db = new JDBC();
         
     }
 }

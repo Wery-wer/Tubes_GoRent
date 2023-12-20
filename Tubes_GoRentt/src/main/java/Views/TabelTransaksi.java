@@ -25,6 +25,17 @@ public class TabelTransaksi extends javax.swing.JPanel {
         jButton2.setEnabled(false);
         jButton3.setEnabled(false);
     }
+    
+    public void loadtransaksi(){
+        sd.setarrTransaksi();
+        sd.setarrMobil();
+        sd.setarrMotor();
+        sd.settabeltersedia();
+        sd.settabeltersewa();
+        sd.settabeltransaksi();
+        
+        jTable2.setModel(sd.tabeltransaksi);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
