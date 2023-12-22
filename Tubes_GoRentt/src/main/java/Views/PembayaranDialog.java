@@ -110,6 +110,7 @@ public class PembayaranDialog extends javax.swing.JDialog {
         trs.getPembayaran().setMetode_bayar(jComboBox1.getSelectedItem().toString());
         trs.getPembayaran().setTanggal_bayar(LocalDate.now());
         
+        // jumlah bayar belum//
         System.out.println(sd.getTransaksi(id_transaksi.toString()).getPembayaran().getStatus_bayar());
         sd.updatetabletransaksi(selectedRow);
         sv.writetransaksi(sd.arrTransaksi);
