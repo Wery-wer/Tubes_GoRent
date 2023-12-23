@@ -37,7 +37,7 @@ public class Motor extends Kendaraan implements Asuransi,Serializable {
     
     public void update_motor() throws SQLException{
         JDBC db = new JDBC();
-        String sql = "UPDATE `motor` SET `ketersediaan` = '"+isKetersediaan()+"'";
+        String sql = "UPDATE `motor` SET `ketersediaan` = '"+!isKetersediaan()+"' WHERE `id_kendaraan` = '"+getId_kendaraan()+"'";
         db.executequery(sql);
     }
     

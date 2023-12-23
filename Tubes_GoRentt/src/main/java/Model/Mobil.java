@@ -4,7 +4,9 @@
  */
 package Model;
 
+import Data.JDBC;
 import java.io.Serializable;
+import java.sql.SQLException;
 
 /**
  *
@@ -36,5 +38,16 @@ public class Mobil extends Kendaraan implements Asuransi, Serializable{
       Mobil s = (Mobil)obj;
       return super.getId_kendaraan().equalsIgnoreCase(s.getId_kendaraan()) && super.getMerek().equalsIgnoreCase(s.getMerek());
    }
+   
+   public void insert_mobil() throws SQLException{
+        JDBC db = new JDBC();
+        String sql = "INSERT INTO `mobil` (`id_kendaraan`, `merek`, `harga_sewa`, `ketersediaan`, `transmisi`, `kapasitas`) VALUES ('"+getId_kendaraan()+"', '"+getMerek()+"', '"+getHarga_sewa()+"', '"+isKetersediaan()+"', '"+getTransmisi()+"', , '"+getKapasitas()+"')";
+        db.executequery(sql);
+    }
     
+   public void update_mobil() throws SQLException{
+        JDBC db = new JDBC();
+        String sql = "UPDATE `mobil` SET `ketersediaan` = '"+!isKetersediaan()+"' WHERE `id_kendaraan` = '"+getId_kendaraan()+"'";
+        db.executequery(sql);
+    }
 }
