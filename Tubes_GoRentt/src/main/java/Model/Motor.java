@@ -3,8 +3,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Model;
+import Data.*;
 
 import java.io.Serializable;
+import java.sql.SQLException;
 
 /**
  *
@@ -26,4 +28,18 @@ public class Motor extends Kendaraan implements Asuransi,Serializable {
       Motor s = (Motor)obj;
       return super.getId_kendaraan().equalsIgnoreCase(s.getId_kendaraan()) && super.getMerek().equalsIgnoreCase(s.getMerek());
     }
+    
+    public void insert_motor() throws SQLException{
+        JDBC db = new JDBC();
+        String sql = "INSERT INTO `motor` (`id_kendaraan`, `merek`, `harga_sewa`, `ketersediaan`, `transmisi`) VALUES ('"+getId_kendaraan()+"', '"+getMerek()+"', '"+getHarga_sewa()+"', '"+isKetersediaan()+"', '"+getTransmisi()+"')";
+        db.executequery(sql);
+    }
+    
+    public void update_motor() throws SQLException{
+        JDBC db = new JDBC();
+        String sql = "UPDATE `motor` SET `ketersediaan` = '"+isKetersediaan()+"'";
+        db.executequery(sql);
+    }
+    
+    
 }

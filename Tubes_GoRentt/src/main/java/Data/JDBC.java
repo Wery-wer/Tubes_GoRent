@@ -55,7 +55,7 @@ public class JDBC {
         
     }
      
-    public ResultSet selectDB(){
+    public ResultSet getData(){
         try {
             String sql = "select * from mahasiswa ";
             st = conn.createStatement();
