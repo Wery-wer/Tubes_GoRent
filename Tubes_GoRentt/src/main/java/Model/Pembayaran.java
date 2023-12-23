@@ -7,6 +7,7 @@ package Model;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Date;
+import Data.*;
 
 /**
  *
@@ -59,5 +60,15 @@ public class Pembayaran implements Serializable {
         this.jumlah_bayar = jumlah_bayar;
     }
     
+    public void insert_pembayaran() {
+        JDBC db = new JDBC();
+        String sql = "INSERT INTO `pembayaran` (`id_pembayaran`, `jumlah_bayar`, `status_bayar`, `metode_bayar`, `tanggal_bayar`) VALUES ('"+this.id_pembayaran+"','"+this.jumlah_bayar+"', '"+this.status_bayar+"', '', '')";
+        db.executequery(sql);
+    }
     
+    public void update_pembayaran(Transaksi trs){
+        JDBC db = new JDBC();
+        String sql = "UPDATE `pembayaran` SET `status_bayar`,`metode_bayar`, `tanggal_bayar` VALUES ('"+trs.getPembayaran().getStatus_bayar()+"', '"+trs.getPembayaran().getMetode_bayar()+"', '"+trs.getPembayaran().getTanggal_bayar()+"')";
+        db.executequery(sql);
+    }
 }
