@@ -41,6 +41,7 @@ public class Tubes_GoRentt {
 //        System.out.println(hasil.contains(m));
 
           JDBC db = new JDBC();
+          db.getData("select * from transaksi");
         
     }
 }

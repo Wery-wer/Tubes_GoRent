@@ -20,7 +20,7 @@ import java.util.logging.Logger;
 public class JDBC {
     
     String jdbcDriver = "com.mysql.jdbc.Driver";
-    static final String DB_URL = "jdbc:mysql://localhost:3306/pbotpminggu13";
+    static final String DB_URL = "jdbc:mysql://localhost:3306/gorent";
     static final String DB_USER = "root";
     static final String DB_PASS = "";
     static Connection conn;
@@ -55,9 +55,9 @@ public class JDBC {
         
     }
      
-    public ResultSet getData(){
+    public ResultSet getData(String sql){
         try {
-            String sql = "select * from mahasiswa ";
+//            String sql = "select * from mahasiswa ";
             st = conn.createStatement();
             rs = st.executeQuery(sql);
             System.out.println("berhasil");
@@ -68,33 +68,33 @@ public class JDBC {
     }
     
     
-    public String DeleteDB(String nim){
-        String sql = "DELETE FROM mahasiswa WHERE NIM = ?";
-        try{
-            stmt = conn.prepareStatement(sql);
-            stmt.setString(1, nim);
-            stmt.executeUpdate();
-            System.out.println("didelete");
-        }catch (SQLException ex) {
-            return "gagal delete";
-        }
-        return "Berhasil delete";
-    }
-    
-    public String UpdateDB(String nimlama, String nimbaru,String nama,String prodi){
-        String sql = "UPDATE mahasiswa Set nim = ?, nama = ?, prodi = ? WHERE NIM = ?";
-        try{
-            stmt = conn.prepareStatement(sql);
-            stmt.setString(1, nimbaru);
-            stmt.setString(2, nama);
-            stmt.setString(3, prodi);
-            stmt.setString(4, nimlama);
-            stmt.executeUpdate();
-            System.out.println("updated");
-        }catch (SQLException ex) {
-            return "gagal update";
-        }
-        return "Berhasil update";
-    }
+//    public String DeleteDB(String nim){
+//        String sql = "DELETE FROM mahasiswa WHERE NIM = ?";
+//        try{
+//            stmt = conn.prepareStatement(sql);
+//            stmt.setString(1, nim);
+//            stmt.executeUpdate();
+//            System.out.println("didelete");
+//        }catch (SQLException ex) {
+//            return "gagal delete";
+//        }
+//        return "Berhasil delete";
+//    }
+//    
+//    public String UpdateDB(String nimlama, String nimbaru,String nama,String prodi){
+//        String sql = "UPDATE mahasiswa Set nim = ?, nama = ?, prodi = ? WHERE NIM = ?";
+//        try{
+//            stmt = conn.prepareStatement(sql);
+//            stmt.setString(1, nimbaru);
+//            stmt.setString(2, nama);
+//            stmt.setString(3, prodi);
+//            stmt.setString(4, nimlama);
+//            stmt.executeUpdate();
+//            System.out.println("updated");
+//        }catch (SQLException ex) {
+//            return "gagal update";
+//        }
+//        return "Berhasil update";
+//    }
     
 }
