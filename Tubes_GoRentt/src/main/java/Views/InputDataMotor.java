@@ -166,6 +166,7 @@ public class InputDataMotor extends javax.swing.JPanel {
                 sd.arrMotor.add(m);
                 sd.addtabeltersedia(m,null);
                 s.writemtr(sd.arrMotor);
+                m.insert_motor();
                 JOptionPane.showMessageDialog(null, "Data Berhasil Ditambahkan");
                 clearInput();
             }

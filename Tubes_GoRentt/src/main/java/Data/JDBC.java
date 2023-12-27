@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -20,51 +21,39 @@ import java.util.logging.Logger;
 public class JDBC {
     
     String jdbcDriver = "com.mysql.jdbc.Driver";
-    static final String DB_URL = "jdbc:mysql://localhost:3306/gorent";
+    static final String DB_URL = "jdbc:mysql://127.0.0.1:3307/gorent";
     static final String DB_USER = "root";
     static final String DB_PASS = "";
-    static Connection conn;
+    public static Connection conn;
     static PreparedStatement stmt;
     static Statement st;
     static ResultSet rs;
-    public JDBC () {
+    
+    public JDBC() throws SQLException {
         try {
-            Class.forName(jdbcDriver);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(JDBC.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-          try {
-            conn  = (Connection) DriverManager.getConnection(DB_URL,DB_USER,DB_PASS);
-              System.out.println("Koneksi Berhasil");
-        } catch (SQLException ex) {
-              System.out.println("Koneksi gagal");
+            conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
+            st = conn.createStatement();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,""+e.getMessage(),"Connection Error",JOptionPane.WARNING_MESSAGE);
         }
     }
     
     
-     public String executequery(String sql){
+     public void executequery (String SQLString) {
         try {
-            stmt.executeUpdate();
-            System.out.println("Berhasil");
-        } catch (SQLException ex) {
-            System.out.println("gagal");
-            return "gagal";
+            st.executeUpdate(SQLString);
+        } catch (Exception e){
+            JOptionPane.showMessageDialog(null,"Error :"+e.getMessage(),"Communication Error",JOptionPane.WARNING_MESSAGE); 
         }
-        return "Berhasil";
-        
     }
      
-    public ResultSet getData(String sql){
+    public ResultSet getData(String SQLString) {
         try {
-//            String sql = "select * from mahasiswa ";
-            st = conn.createStatement();
-            rs = st.executeQuery(sql);
-            System.out.println("berhasil");
-        } catch (SQLException ex) {
-            System.out.println("gagal select");
+            rs = st.executeQuery(SQLString);
+        } catch (Exception e){
+            JOptionPane.showMessageDialog(null,"Error  :"+e.getMessage(),"Communication Error", JOptionPane.WARNING_MESSAGE);
         }
-        return rs;  
+        return rs;
     }
     
     

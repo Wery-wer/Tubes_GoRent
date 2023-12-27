@@ -7,6 +7,7 @@ package com.mycompany.tubes_gorentt;
 import Data.JDBC;
 import Data.Save;
 import Model.Mobil;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
@@ -15,7 +16,7 @@ import java.util.ArrayList;
  */
 public class Tubes_GoRentt {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException{
 //        Save s = new Save();
 //        
 ////        Mobil m = new Mobil(1,"m",10,true,"sada","manual");

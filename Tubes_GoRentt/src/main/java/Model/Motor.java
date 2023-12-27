@@ -31,13 +31,13 @@ public class Motor extends Kendaraan implements Asuransi,Serializable {
     
     public void insert_motor() throws SQLException{
         JDBC db = new JDBC();
-        String sql = "INSERT INTO `motor` (`id_kendaraan`, `merek`, `harga_sewa`, `ketersediaan`, `transmisi`) VALUES ('"+getId_kendaraan()+"', '"+getMerek()+"', '"+getHarga_sewa()+"', '"+isKetersediaan()+"', '"+getTransmisi()+"')";
+        String sql = "INSERT INTO `motor` (`id`, `merek`, `harga`, `transmisi`) VALUES ('"+getId_kendaraan()+"', '"+getMerek()+"', '"+getHarga_sewa()+"', '"+getTransmisi()+"')";
         db.executequery(sql);
     }
     
-    public void update_motor() throws SQLException{
+    public void update_motor(int i) throws SQLException{
         JDBC db = new JDBC();
-        String sql = "UPDATE `motor` SET `ketersediaan` = '"+!isKetersediaan()+"' WHERE `id_kendaraan` = '"+getId_kendaraan()+"'";
+        String sql = "UPDATE `motor` SET `ketersediaan` = '"+!isKetersediaan()+"' WHERE `id` = '"+getId_kendaraan()+"'";
         db.executequery(sql);
     }
     

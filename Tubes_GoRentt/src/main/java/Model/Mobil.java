@@ -41,13 +41,13 @@ public class Mobil extends Kendaraan implements Asuransi, Serializable{
    
    public void insert_mobil() throws SQLException{
         JDBC db = new JDBC();
-        String sql = "INSERT INTO `mobil` (`id_kendaraan`, `merek`, `harga_sewa`, `ketersediaan`, `transmisi`, `kapasitas`) VALUES ('"+getId_kendaraan()+"', '"+getMerek()+"', '"+getHarga_sewa()+"', '"+isKetersediaan()+"', '"+getTransmisi()+"', , '"+getKapasitas()+"')";
+        String sql = "INSERT INTO `mobil` (`id`, `merek`, `harga`, `transmisi`, `kapasitas`) VALUES ('"+getId_kendaraan()+"', '"+getMerek()+"', '"+getHarga_sewa()+"', '"+getTransmisi()+"', '"+getKapasitas()+"')";
         db.executequery(sql);
     }
     
-   public void update_mobil() throws SQLException{
+   public void update_mobil(int i) throws SQLException{
         JDBC db = new JDBC();
-        String sql = "UPDATE `mobil` SET `ketersediaan` = '"+!isKetersediaan()+"' WHERE `id_kendaraan` = '"+getId_kendaraan()+"'";
+        String sql = "UPDATE `mobil` SET `ketersediaan` = '"+i+"' WHERE `id` = '"+getId_kendaraan()+"'";
         db.executequery(sql);
     }
 }

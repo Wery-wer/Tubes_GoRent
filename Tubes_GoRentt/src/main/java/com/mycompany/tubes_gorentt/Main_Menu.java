@@ -20,12 +20,12 @@ public class Main_Menu extends javax.swing.JFrame {
      * Creates new form Main_Menu
      */
     public Main_Menu() {
-        sd.setarrTransaksi();
-        sd.setarrMobil();
-        sd.setarrMotor();
-        sd.settabeltersedia();
-        sd.settabeltersewa();
-        sd.settabeltransaksi();
+//        sd.setarrTransaksi();
+//        sd.setarrMobil();
+//        sd.setarrMotor();
+//        sd.settabeltersedia();
+//        sd.settabeltersewa();
+//        sd.settabeltransaksi();
         initComponents();
         
     }
@@ -592,6 +592,7 @@ public class Main_Menu extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         Homepage home = new Homepage();
+        home.show_tableTersedia();
         changePanel(home);
     }//GEN-LAST:event_jButton2ActionPerformed
 

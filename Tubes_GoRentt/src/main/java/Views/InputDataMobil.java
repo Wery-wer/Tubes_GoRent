@@ -190,6 +190,7 @@ public class InputDataMobil extends javax.swing.JPanel {
                 sd.arrMobil.add(m);
                 sd.addtabeltersedia(null,m);
                 s.writem(sd.arrMobil);
+                m.insert_mobil();
                 JOptionPane.showMessageDialog(null, "Data Berhasil Ditambahkan");
                 clearInput();
             }

@@ -4,7 +4,9 @@
  */
 package Model;
 
+import Data.JDBC;
 import java.io.Serializable;
+import java.sql.SQLException;
 
 /**
  *
@@ -43,6 +45,13 @@ public class Penyewa implements Serializable{
 
     public void setAlamat(String alamat) {
         this.alamat = alamat;
+    }
+    
+    public void insert_penyewa() throws SQLException{
+        JDBC db = new JDBC();
+        String sql = "INSERT INTO `penyewa` (`nama`, `nomor_telepon`, `alamat`) VALUES ('"+getNama()+"', '"+getNomor_telepon()+"', '"+getAlamat()+"')";
+        db.executequery(sql);
+        db.conn.close();
     }
 
 }
