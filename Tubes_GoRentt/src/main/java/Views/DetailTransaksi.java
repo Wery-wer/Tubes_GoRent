@@ -464,7 +464,7 @@ public class DetailTransaksi extends javax.swing.JDialog {
             jLabel32.setText(pmb.getTanggal_bayar().toString());
             jLabel34.setText("Lunas");
             jLabel37.setText(pmb.getMetode_bayar());
-            jLabel38.setText("xxxxx");
+            jLabel38.setText(Integer.toString(pmb.getJumlah_bayar()));
         } else {
             jLabel31.setText("Belum Lunas");
             jLabel32.setText("Belum Lunas");

@@ -4,6 +4,7 @@
  */
 package Views;
 import Data.*;
+import static Data.ScreenData.tabeltransaksi;
 import Model.*;
 import com.mycompany.tubes_gorentt.Main_Menu;
 /**
@@ -24,17 +25,20 @@ public class TabelTransaksi extends javax.swing.JPanel {
         jButton1.setEnabled(false);
         jButton2.setEnabled(false);
         jButton3.setEnabled(false);
+        sd.setarrTransaksi();
+        sd.settabeltransaksi();
+        jTable2.setModel(tabeltransaksi);
     }
     
     public void loadtransaksi(){
-        sd.setarrTransaksi();
-        sd.setarrMobil();
-        sd.setarrMotor();
-        sd.settabeltersedia();
-        sd.settabeltersewa();
-        sd.settabeltransaksi();
+//        sd.setarrTransaksi();
+//        sd.setarrMobil();
+//        sd.setarrMotor();
+//        sd.settabeltersedia();
+//        sd.settabeltersewa();
+//        sd.settabeltransaksi();
         
-        jTable2.setModel(sd.tabeltransaksi);
+        jTable2.setModel(tabeltransaksi);
     }
 
     /**
@@ -120,10 +124,11 @@ public class TabelTransaksi extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 473, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButton1)
+                        .addComponent(jButton2)))
                 .addGap(25, 25, 25))
         );
     }// </editor-fold>//GEN-END:initComponents

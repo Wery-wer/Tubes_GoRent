@@ -4,6 +4,7 @@
  */
 package Model;
 import java.io.Serializable;
+import java.sql.Date;
 import java.time.*;
 import java.time.format.*;
 
@@ -70,10 +71,11 @@ public class Transaksi implements Serializable{
         return this.tanggal_penyewaan; 
     }
     
-    public void setTanggal_penyewaan() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        String formattedDate = LocalDateTime.now().format(formatter);
-        this.tanggal_penyewaan = LocalDate.parse(formattedDate, formatter);
+    public void setTanggal_penyewaan(Date date) {
+//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+//        String formattedDate = LocalDateTime.now().format(formatter);
+//        this.tanggal_penyewaan = LocalDate.parse(formattedDate, formatter);
+            this.tanggal_penyewaan = date.toLocalDate();
     }
 
     public Mobil getMobil() {
@@ -125,6 +127,7 @@ public class Transaksi implements Serializable{
         Transaksi trs = (Transaksi) obj;
         return this.getId_transaksi().equalsIgnoreCase(trs.getId_kendaraan());
     }
+    
     
     
     

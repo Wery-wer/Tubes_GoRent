@@ -6,7 +6,7 @@ package Model;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.Date;
+import java.sql.Date;
 import Data.*;
 import java.sql.SQLException;
 
@@ -35,6 +35,10 @@ public class Pembayaran implements Serializable {
 
     public void setTanggal_bayar(LocalDate tanggal_bayar) {
         this.tanggal_bayar = tanggal_bayar;
+    }
+    
+    public void setTanggal_bayarfromdb(Date tgl){
+        this.tanggal_bayar = tgl.toLocalDate();
     }
 
     public boolean getStatus_bayar() {

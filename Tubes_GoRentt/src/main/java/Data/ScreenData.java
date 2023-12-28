@@ -6,9 +6,15 @@ package Data;
 
 import Model.Mobil;
 import Model.Motor;
+import Model.Pembayaran;
+import Model.Penyewa;
 import Model.Transaksi;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -16,6 +22,7 @@ import javax.swing.table.DefaultTableModel;
  * @author OMEN 870
  */
 public class ScreenData {
+    
     Save s = new Save();
     public static ArrayList<Mobil> arrMobil = new ArrayList<Mobil>();
     public static ArrayList<Motor> arrMotor = new ArrayList<Motor>();
@@ -35,15 +42,74 @@ public class ScreenData {
     });
     
     public void setarrMobil(){
-        this.arrMobil = s.readm();
+        JDBC db;
+        try {
+            db = new JDBC();
+            String sql = "SELECT * FROM `mobil`";
+            ResultSet rs = db.getData(sql);
+            while(rs.next()){
+                Mobil m = new Mobil(rs.getInt("kapasitas"),rs.getString("merek"),rs.getInt("harga"),rs.getBoolean("ketersediaan"),rs.getString("id"),rs.getString("transmisi"));
+                this.arrMobil.add(m);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ScreenData.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
     
     public void setarrMotor(){
-        this.arrMotor = s.readmtr();
+        JDBC db;
+        try {
+            db = new JDBC();
+            String sql = "SELECT * FROM `motor`";
+            ResultSet rs = db.getData(sql);
+            while(rs.next()){
+                Motor m = new Motor(rs.getString("merek"),rs.getInt("harga"),rs.getBoolean("ketersediaan"),rs.getString("id"),rs.getString("transmisi"));
+                this.arrMotor.add(m);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ScreenData.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     public void setarrTransaksi(){
-        this.arrTransaksi = s.readTransaksi();
+        JDBC db;
+        try {
+            db = new JDBC();
+            String sql = "SELECT * FROM `transaksi` INNER JOIN `penyewa` on penyewa.id = transaksi.penyewaid LEFT JOIN `pengembalian` on transaksi.pengembalianid = pengembalian.id LEFT JOIN `pembayaran` on transaksi.pembayaranid = pembayaran.id";
+            ResultSet rs = db.getData(sql);
+            while(rs.next()){
+                Penyewa pnyw = new Penyewa(rs.getString("nama"),rs.getString("nomor_telepon"),rs.getString("alamat"));
+                if(rs.getString("mobilid") != null){
+                    Mobil m = getMobil(rs.getString("mobilid"));
+                    Transaksi trs = new Transaksi(rs.getString("id"),m.getId_kendaraan(),rs.getInt("lama_penyewaan"), rs.getInt("total_harga"), pnyw, m, null);
+                    trs.setTanggal_penyewaan(rs.getDate("tanggal_penyewaan"));
+//                    if (rs.getString("pengembalianid") != null){
+//                        //set pengembalian
+//                    }
+                    if (rs.getString("pembayaranid") != null){
+                        Pembayaran pmb = new Pembayaran();
+                        pmb.setId_pembayaran(rs.getString("id"));
+                        pmb.setJumlah_bayar(rs.getInt("Jumlah_bayar"));
+                        pmb.setMetode_bayar(rs.getString("Metode_bayar"));
+                        pmb.setStatus_bayar(rs.getBoolean("Status_bayar"));
+                        pmb.setTanggal_bayarfromdb(rs.getDate("tanggal_pembayaran"));
+                        
+                        trs.setPembayaran(pmb);
+                    }
+                    this.arrTransaksi.add(trs);
+                }else if(rs.getString("motorid") != null){
+                    Motor mtr = getMotor(rs.getString("motorid"));
+                    Transaksi trs = new Transaksi(rs.getString("id"),mtr.getId_kendaraan(),rs.getInt("lama_penyewaan"), rs.getInt("total_harga"), pnyw, null, mtr);
+                    trs.setTanggal_penyewaan(rs.getDate("tanggal_penyewaan"));
+                    this.arrTransaksi.add(trs);
+                    
+                }
+            }
+            
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
     
     

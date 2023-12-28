@@ -33,6 +33,7 @@ public class JDBC {
         try {
             conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
             st = conn.createStatement();
+            System.out.println("connected");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null,""+e.getMessage(),"Connection Error",JOptionPane.WARNING_MESSAGE);
         }
