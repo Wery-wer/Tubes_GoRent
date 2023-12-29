@@ -38,7 +38,7 @@ public class Transaksi implements Serializable{
         this.data_penyewa = data_penyewa;
         this.mobil = mobil;
         this.motor = motor;
-        createPembayaran(total_harga);
+        createPembayaran(this.id_transaksi,null, false,null,this.total_harga);
         
         try {
 
@@ -47,7 +47,7 @@ public class Transaksi implements Serializable{
             System.out.println(sqlidpenyewa);
             String sql;
             String sql2 = "INSERT INTO `penyewa`(`id`, `nama`, `nomor_telepon`, `alamat`) VALUES ('"+this.id_transaksi+"_0"+"','"+data_penyewa.getNama()+"','"+data_penyewa.getNomor_telepon()+"','"+data_penyewa.getAlamat()+"')";
-            String sql3 = "INSERT INTO `pembayaran`(`status_bayar`, `metode_bayar`, `jumlah_bayar`, `id`) VALUES ("+this.pembayaran.getStatus_bayar()+",'"+this.pembayaran.getMetode_bayar()+"','"+this.pembayaran.getJumlah_bayar()+"','"+this.pembayaran.getId_pembayaran()+"')";
+            String sql3 = "INSERT INTO `pembayaran`(`status_bayar`, `metode_bayar`, `jumlah_bayar`, `id`) VALUES ("+this.pembayaran.getStatus_bayar()+","+this.pembayaran.getMetode_bayar()+",'"+this.pembayaran.getJumlah_bayar()+"','"+this.pembayaran.getId_pembayaran()+"')";
             JDBC db = new JDBC();
             db.executequery(sql2);
             db.executequery(sql3);
@@ -131,11 +131,15 @@ public class Transaksi implements Serializable{
     public boolean cek_status_bayar() {
         return (pembayaran.getStatus_bayar());
     }
-    public final void createPembayaran(int jumlah_bayar) {
-        this.pembayaran = new Pembayaran();
-        this.pembayaran.setId_pembayaran(this.id_transaksi+"_1");
-        this.pembayaran.setJumlah_bayar(jumlah_bayar);
-        this.pembayaran.setStatus_bayar(false);
+//    public final void createPembayaran(int jumlah_bayar) {
+//        this.pembayaran = new Pembayaran();
+//        this.pembayaran.setId_pembayaran(this.id_transaksi+"_1");
+//        this.pembayaran.setJumlah_bayar(jumlah_bayar);
+//        this.pembayaran.setStatus_bayar(false);
+//    }
+    
+    public void createPembayaran(String id_pembayaran, java.sql.Date tanggal_bayar, boolean status_bayar, String metode_bayar, int jumlah_bayar) {
+        this.pembayaran = new Pembayaran(id_pembayaran,tanggal_bayar,status_bayar,metode_bayar,jumlah_bayar);
     }
     
     public LocalDate getTanggalPengembalian(){

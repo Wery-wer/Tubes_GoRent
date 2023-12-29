@@ -59,9 +59,8 @@ public class Pengembalian implements Serializable{
         this.status_pengembalian = status_pengembalian;
     }
     
-    public void createPembayaran(int jumlah_bayar) {
-        this.pembayaran = new Pembayaran();
-        this.pembayaran.setJumlah_bayar(jumlah_bayar);
+    public void createPembayaran(String id_pembayaran, java.sql.Date tanggal_bayar, boolean status_bayar, String metode_bayar, int jumlah_bayar) {
+        this.pembayaran = new Pembayaran(id_pembayaran,tanggal_bayar,status_bayar,metode_bayar,jumlah_bayar);
     }
     
     public boolean cek_status_bayar(){

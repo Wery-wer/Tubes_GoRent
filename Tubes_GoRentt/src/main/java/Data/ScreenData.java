@@ -42,6 +42,7 @@ public class ScreenData {
     });
     
     public void setarrMobil(){
+        this.arrMobil.clear();
         JDBC db;
         try {
             db = new JDBC();
@@ -58,6 +59,7 @@ public class ScreenData {
     }
     
     public void setarrMotor(){
+        this.arrMotor.clear();
         JDBC db;
         try {
             db = new JDBC();
@@ -73,6 +75,7 @@ public class ScreenData {
     }
     
     public void setarrTransaksi(){
+        this.arrTransaksi.clear();
         JDBC db;
         try {
             db = new JDBC();
@@ -88,12 +91,12 @@ public class ScreenData {
 //                        //set pengembalian
 //                    }
                     if (rs.getString("pembayaranid") != null){
-                        Pembayaran pmb = new Pembayaran();
-                        pmb.setId_pembayaran(rs.getString("id"));
-                        pmb.setJumlah_bayar(rs.getInt("Jumlah_bayar"));
-                        pmb.setMetode_bayar(rs.getString("Metode_bayar"));
-                        pmb.setStatus_bayar(rs.getBoolean("Status_bayar"));
-                        pmb.setTanggal_bayarfromdb(rs.getDate("tanggal_pembayaran"));
+                        Pembayaran pmb = new Pembayaran(rs.getString("id"),rs.getDate("tanggal_pembayaran"),rs.getBoolean("Status_bayar"),rs.getString("Metode_bayar"),rs.getInt("Jumlah_bayar"));
+//                        pmb.setId_pembayaran(rs.getString("id"));
+//                        pmb.setJumlah_bayar(rs.getInt("Jumlah_bayar"));
+//                        pmb.setMetode_bayar(rs.getString("Metode_bayar"));
+//                        pmb.setStatus_bayar(rs.getBoolean("Status_bayar"));
+//                        pmb.setTanggal_bayarfromdb(rs.getDate("tanggal_pembayaran"));
                         
                         trs.setPembayaran(pmb);
                     }

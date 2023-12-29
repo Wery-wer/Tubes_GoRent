@@ -150,10 +150,10 @@ public class PengembalianDialog extends javax.swing.JDialog {
             String jenisPembayaran = (String) jComboBox2.getSelectedItem();
             denda = Integer.parseInt(denda_String);
             LocalDate waktu_kembali = LocalDate.parse(kembali, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-            Pembayaran pem = new Pembayaran();
-            pem.setMetode_bayar(jenisPembayaran);
+            //Pembayaran pem = new Pembayaran();
+            //pem.setMetode_bayar(jenisPembayaran);
 
-            peng = new Pengembalian(pem, waktu_kembali, denda, true);
+            //peng = new Pengembalian(pem, waktu_kembali, denda, true);
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Masukkan angka yang valid untuk denda", "Kesalahan", JOptionPane.ERROR_MESSAGE);
         }

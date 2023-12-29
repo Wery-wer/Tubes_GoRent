@@ -113,7 +113,6 @@ public class PembayaranDialog extends javax.swing.JDialog {
         // jumlah bayar belum//
         System.out.println(sd.getTransaksi(id_transaksi.toString()).getPembayaran().getStatus_bayar());
         sd.updatetabletransaksi(selectedRow);
-        sv.writetransaksi(sd.arrTransaksi);
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 

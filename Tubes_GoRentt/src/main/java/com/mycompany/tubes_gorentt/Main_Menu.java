@@ -592,7 +592,7 @@ public class Main_Menu extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         Homepage home = new Homepage();
-        home.show_tableTersedia();
+        //home.show_tableTersedia();
         changePanel(home);
     }//GEN-LAST:event_jButton2ActionPerformed
 
