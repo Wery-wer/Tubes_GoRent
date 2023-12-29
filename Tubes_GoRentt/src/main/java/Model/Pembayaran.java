@@ -38,7 +38,10 @@ public class Pembayaran implements Serializable {
     }
     
     public void setTanggal_bayarfromdb(Date tgl){
-        this.tanggal_bayar = tgl.toLocalDate();
+        if(tgl != null){
+            this.tanggal_bayar = tgl.toLocalDate();
+        }
+        
     }
 
     public boolean getStatus_bayar() {

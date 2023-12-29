@@ -3,10 +3,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Model;
+import Data.JDBC;
 import java.io.Serializable;
 import java.sql.Date;
+import java.sql.SQLException;
 import java.time.*;
 import java.time.format.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 /**
@@ -25,6 +29,7 @@ public class Transaksi implements Serializable{
     private Motor motor;
     
     public Transaksi(String id_transaksi, String id_kendaraan, int lama_penyewaan, int total_harga, Penyewa data_penyewa, Mobil mobil, Motor motor) {
+        
         this.id_transaksi = id_transaksi;
         this.id_kendaraan = id_kendaraan;
         this.lama_penyewaan = lama_penyewaan;
@@ -34,6 +39,30 @@ public class Transaksi implements Serializable{
         this.mobil = mobil;
         this.motor = motor;
         createPembayaran(total_harga);
+        
+        try {
+
+            String sqlidpembayaran = "(SELECT id FROM `pembayaran` WHERE id = '"+this.pembayaran.getId_pembayaran()+"')";
+            String sqlidpenyewa = "(SELECT id FROM `penyewa` WHERE id = '"+this.id_transaksi+"_0')";
+            System.out.println(sqlidpenyewa);
+            String sql;
+            String sql2 = "INSERT INTO `penyewa`(`id`, `nama`, `nomor_telepon`, `alamat`) VALUES ('"+this.id_transaksi+"_0"+"','"+data_penyewa.getNama()+"','"+data_penyewa.getNomor_telepon()+"','"+data_penyewa.getAlamat()+"')";
+            String sql3 = "INSERT INTO `pembayaran`(`status_bayar`, `metode_bayar`, `jumlah_bayar`, `id`) VALUES ("+this.pembayaran.getStatus_bayar()+",'"+this.pembayaran.getMetode_bayar()+"','"+this.pembayaran.getJumlah_bayar()+"','"+this.pembayaran.getId_pembayaran()+"')";
+            JDBC db = new JDBC();
+            db.executequery(sql2);
+            db.executequery(sql3);
+            if (mobil != null){
+                String sqlidmobil = "(SELECT id FROM `mobil` WHERE id = '"+this.mobil.getId_kendaraan()+"')";
+                sql = "INSERT INTO `transaksi`(`id`, `lama_penyewaan`, `total_harga`, `tanggal_penyewaan`, `penyewaid`, `mobilid`, `pembayaranid`) VALUES ('"+this.id_transaksi+"','"+this.lama_penyewaan+"','"+this.total_harga+"','"+this.tanggal_penyewaan+"',"+sqlidpenyewa+","+sqlidmobil+","+sqlidpembayaran+")";
+            }else{
+                String sqlidmotor = "(SELECT id FROM `motor` WHERE id = '"+this.motor.getId_kendaraan()+"')";
+                sql = "INSERT INTO `transaksi`(`id`, `lama_penyewaan`, `total_harga`, `tanggal_penyewaan`, `penyewaid`, `motorid`, `pembayaranid`) VALUES ('"+this.id_transaksi+"','"+this.lama_penyewaan+"','"+this.total_harga+"','"+this.tanggal_penyewaan+"',"+sqlidpenyewa+","+sqlidmotor+","+sqlidpembayaran+")";
+            }
+            
+            db.executequery(sql);
+        } catch (SQLException ex) {
+            Logger.getLogger(Transaksi.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }
     
@@ -104,7 +133,7 @@ public class Transaksi implements Serializable{
     }
     public final void createPembayaran(int jumlah_bayar) {
         this.pembayaran = new Pembayaran();
-        this.pembayaran.setId_pembayaran(id_kendaraan+"_1");
+        this.pembayaran.setId_pembayaran(this.id_transaksi+"_1");
         this.pembayaran.setJumlah_bayar(jumlah_bayar);
         this.pembayaran.setStatus_bayar(false);
     }
@@ -127,8 +156,7 @@ public class Transaksi implements Serializable{
         Transaksi trs = (Transaksi) obj;
         return this.getId_transaksi().equalsIgnoreCase(trs.getId_kendaraan());
     }
-    
-    
+
     
     
 }
