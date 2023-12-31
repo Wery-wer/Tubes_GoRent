@@ -28,16 +28,20 @@ public class Transaksi implements Serializable{
     private Mobil mobil; 
     private Motor motor;
     
-    public Transaksi(String id_transaksi, String id_kendaraan, int lama_penyewaan, int total_harga, Penyewa data_penyewa, Mobil mobil, Motor motor) {
+    public Transaksi(String id_transaksi, String id_kendaraan, int lama_penyewaan, Penyewa data_penyewa, Mobil mobil, Motor motor) {
         
         this.id_transaksi = id_transaksi;
         this.id_kendaraan = id_kendaraan;
         this.lama_penyewaan = lama_penyewaan;
-        this.total_harga = total_harga * lama_penyewaan;
         this.tanggal_penyewaan = LocalDate.now();
         this.data_penyewa = data_penyewa;
         this.mobil = mobil;
         this.motor = motor;
+        if(this.mobil != null){
+            this.total_harga = this.mobil.getHarga_sewa() * lama_penyewaan;
+        }else{
+            this.total_harga = this.motor.getHarga_sewa() * lama_penyewaan;
+        }
         createPembayaran(this.id_transaksi,null, false,null,this.total_harga);
         
         try {
@@ -131,6 +135,24 @@ public class Transaksi implements Serializable{
     public boolean cek_status_bayar() {
         return (pembayaran.getStatus_bayar());
     }
+
+    public Pengembalian getPengembalian() {
+        return pengembalian;
+    }
+
+    public void setPengembalian(Pengembalian pengembalian) {
+        this.pengembalian = pengembalian;
+        try {
+            JDBC db = new JDBC();
+            String sql = "UPDATE `transaksi` SET `pengembalianid` = '"+this.id_transaksi+"' where id = '"+this.id_transaksi+"'";
+            db.executequery(sql);
+        } catch (SQLException ex) {
+            Logger.getLogger(Transaksi.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    
+    
 //    public final void createPembayaran(int jumlah_bayar) {
 //        this.pembayaran = new Pembayaran();
 //        this.pembayaran.setId_pembayaran(this.id_transaksi+"_1");
@@ -138,7 +160,7 @@ public class Transaksi implements Serializable{
 //        this.pembayaran.setStatus_bayar(false);
 //    }
     
-    public void createPembayaran(String id_pembayaran, java.sql.Date tanggal_bayar, boolean status_bayar, String metode_bayar, int jumlah_bayar) {
+    public void createPembayaran(String id_pembayaran, Date tanggal_bayar, boolean status_bayar, String metode_bayar, int jumlah_bayar) {
         this.pembayaran = new Pembayaran(id_pembayaran,tanggal_bayar,status_bayar,metode_bayar,jumlah_bayar);
     }
     

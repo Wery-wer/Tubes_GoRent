@@ -32,6 +32,15 @@ public class Pembayaran implements Serializable {
         if(tanggal_bayar != null){
             this.tanggal_bayar = tanggal_bayar.toLocalDate();
         }
+//        JDBC db;
+//        try {
+//            db = new JDBC();
+//            String sql = "INSERT INTO `pembayaran` (`id_pembayaran`, `jumlah_bayar`, `status_bayar`, `metode_bayar`, `tanggal_bayar`) VALUES ('"+this.id_pembayaran+"',"+this.jumlah_bayar+", "+this.status_bayar+", '"+this.metode_bayar+"', '"+this.tanggal_bayar+"')";
+//            db.executequery(sql);
+//        } catch (SQLException ex) {
+//            Logger.getLogger(Pembayaran.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+        
     }
     
     
@@ -117,11 +126,11 @@ public class Pembayaran implements Serializable {
         this.jumlah_bayar = jumlah_bayar;
     }
     
-    public void insert_pembayaran() throws SQLException{
-        JDBC db = new JDBC();
-        String sql = "INSERT INTO `pembayaran` (`id_pembayaran`, `jumlah_bayar`, `status_bayar`, `metode_bayar`, `tanggal_bayar`) VALUES ('"+this.id_pembayaran+"','"+this.jumlah_bayar+"', '"+this.status_bayar+"', '', '')";
-        db.executequery(sql);
-    }
+//    public void insert_pembayaran() throws SQLException{
+//        JDBC db = new JDBC();
+//        String sql = "INSERT INTO `pembayaran` (`id_pembayaran`, `jumlah_bayar`, `status_bayar`, `metode_bayar`, `tanggal_bayar`) VALUES ('"+this.id_pembayaran+"','"+this.jumlah_bayar+"', '"+this.status_bayar+"', '', '')";
+//        db.executequery(sql);
+//    }
     
     public void update_pembayaran(Transaksi trs) throws SQLException{
         JDBC db = new JDBC();

@@ -4,10 +4,11 @@
 
 package com.mycompany.tubes_gorentt;
 
-import Data.JDBC;
-import Data.Save;
-import Model.Mobil;
+//import Data.JDBC;
+//import Data.Save;
+//import Model.Mobil;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 /**
@@ -41,8 +42,11 @@ public class Tubes_GoRentt {
 //        System.out.println("adsadas");
 //        System.out.println(hasil.contains(m));
 
-          JDBC db = new JDBC();
-          db.getData("select * from transaksi");
+          LocalDate dat = LocalDate.parse("2023-12-23");
+           LocalDate dat1 = LocalDate.now();
+           
+           int h = dat1.compareTo(dat);
+           System.out.println(h);
         
     }
 }

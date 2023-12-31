@@ -4,9 +4,13 @@
  */
 package Model;
 
+import Data.JDBC;
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.Date;
+import java.sql.Date;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -18,11 +22,24 @@ public class Pengembalian implements Serializable{
     private int denda;
     private boolean status_pengembalian;
 
-    public Pengembalian(Pembayaran pembayaran, LocalDate tanggal_kembali, int denda, boolean status_pengembalian) {
-        this.pembayaran = pembayaran;
-        this.tanggal_kembali = tanggal_kembali;
-        this.denda = denda;
-        this.status_pengembalian = status_pengembalian;
+    public Pengembalian(Transaksi trs) {
+        
+        this.tanggal_kembali = LocalDate.now();
+        this.denda = this.tanggal_kembali.compareTo(trs.getTanggal_penyewaan())*100000;
+        this.status_pengembalian = true;
+        createPembayaran(trs.getId_transaksi()+"_1",null, true,null,this.denda);
+        
+        
+        try {
+            String sqlidpembayaran = "(SELECT id FROM `pembayaran` WHERE id = '"+this.pembayaran.getId_pembayaran()+"')";
+            String sql = "INSERT INTO `pengembalian`(`id`, `tanggal_kembali`, `denda`, `status_pengembalian`, `pembayaranid`) VALUES ('"+trs.getId_transaksi()+"','"+this.tanggal_kembali+"',"+this.denda+","+this.status_pengembalian+","+sqlidpembayaran+")";
+            String sql1 = "INSERT INTO `pembayaran`(`status_bayar`, `metode_bayar`, `jumlah_bayar`, `id`) VALUES ("+this.pembayaran.getStatus_bayar()+","+this.pembayaran.getMetode_bayar()+",'"+this.pembayaran.getJumlah_bayar()+"','"+this.pembayaran.getId_pembayaran()+"')";
+            JDBC db = new JDBC();
+            db.executequery(sql1);
+            db.executequery(sql);
+        } catch (SQLException ex) {
+            Logger.getLogger(Pengembalian.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     
@@ -59,7 +76,7 @@ public class Pengembalian implements Serializable{
         this.status_pengembalian = status_pengembalian;
     }
     
-    public void createPembayaran(String id_pembayaran, java.sql.Date tanggal_bayar, boolean status_bayar, String metode_bayar, int jumlah_bayar) {
+    private void createPembayaran(String id_pembayaran, Date tanggal_bayar, boolean status_bayar, String metode_bayar, int jumlah_bayar) {
         this.pembayaran = new Pembayaran(id_pembayaran,tanggal_bayar,status_bayar,metode_bayar,jumlah_bayar);
     }
     

@@ -85,7 +85,7 @@ public class ScreenData {
                 Penyewa pnyw = new Penyewa(rs.getString("nama"),rs.getString("nomor_telepon"),rs.getString("alamat"));
                 if(rs.getString("mobilid") != null){
                     Mobil m = getMobil(rs.getString("mobilid"));
-                    Transaksi trs = new Transaksi(rs.getString("id"),m.getId_kendaraan(),rs.getInt("lama_penyewaan"), rs.getInt("total_harga"), pnyw, m, null);
+                    Transaksi trs = new Transaksi(rs.getString("id"),m.getId_kendaraan(),rs.getInt("lama_penyewaan"), pnyw, m, null);
                     trs.setTanggal_penyewaan(rs.getDate("tanggal_penyewaan"));
 //                    if (rs.getString("pengembalianid") != null){
 //                        //set pengembalian
@@ -103,7 +103,7 @@ public class ScreenData {
                     this.arrTransaksi.add(trs);
                 }else if(rs.getString("motorid") != null){
                     Motor mtr = getMotor(rs.getString("motorid"));
-                    Transaksi trs = new Transaksi(rs.getString("id"),mtr.getId_kendaraan(),rs.getInt("lama_penyewaan"), rs.getInt("total_harga"), pnyw, null, mtr);
+                    Transaksi trs = new Transaksi(rs.getString("id"),mtr.getId_kendaraan(),rs.getInt("lama_penyewaan"), pnyw, null, mtr);
                     trs.setTanggal_penyewaan(rs.getDate("tanggal_penyewaan"));
                     this.arrTransaksi.add(trs);
                     
@@ -163,7 +163,7 @@ public class ScreenData {
     });
             int idx = 0;
             for (int i = 0;i<arrTransaksi.size();i++) {
-                if(arrTransaksi.get(i).cek_status_bayar()){
+                if(arrTransaksi.get(i).cek_status_bayar() && arrTransaksi.get(i).getPengembalian() != null){
                     
                 
                     if (arrTransaksi.get(i).getMobil() != null){
@@ -241,7 +241,7 @@ public class ScreenData {
     public Transaksi getTransaksi(String id_transaksi) {
         for (Transaksi trs : arrTransaksi) {
             if (trs.getId_transaksi().equals(id_transaksi)) {
-                return trs; // Motor ditemukan
+                return trs;
             }
         }
 
@@ -252,5 +252,15 @@ public class ScreenData {
         Object[] o = new Object[]{tabeltransaksi.getValueAt(row, 0),tabeltransaksi.getValueAt(row, 1),tabeltransaksi.getValueAt(row, 2),tabeltransaksi.getValueAt(row, 3),tabeltransaksi.getValueAt(row, 4),true};
         tabeltransaksi.removeRow(row);
         tabeltransaksi.addRow(o);
-    }   
+    }
+    
+    public Transaksi getTransaksibyidkendaraan(String id_kendaraan) {
+        for (Transaksi trs : arrTransaksi) {
+            if (trs.getId_kendaraan().equals(id_kendaraan)) {
+                return trs;
+            }
+        }
+
+        return null;
+    }
 }

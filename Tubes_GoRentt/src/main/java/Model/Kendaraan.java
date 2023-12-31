@@ -4,7 +4,11 @@
  */
 package Model;
 
+import Data.JDBC;
 import java.io.Serializable;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -49,6 +53,14 @@ public abstract class Kendaraan implements Serializable{
 
     public void setKetersediaan(boolean ketersediaan) {
         this.ketersediaan = ketersediaan;
+        try {
+            JDBC db = new JDBC();
+            String sql = "UPDATE `mobil` SET `ketersediaan` = "+ketersediaan+" WHERE `id` = '"+this.id_kendaraan+"'";
+        db.executequery(sql);
+        } catch (SQLException ex) {
+            Logger.getLogger(Kendaraan.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
 
     public String getId_kendaraan() {
