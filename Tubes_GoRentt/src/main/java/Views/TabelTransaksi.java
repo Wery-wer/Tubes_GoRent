@@ -138,10 +138,16 @@ public class TabelTransaksi extends javax.swing.JPanel {
         selectedRow = jTable2.getSelectedRow();
         if (selectedRow != -1){
             id_transaksi = jTable2.getValueAt(selectedRow, 0);
-            jButton1.setEnabled(true);
-            jButton2.setEnabled(true);
-            jButton3.setEnabled(true);
             Transaksi trs = sd.getTransaksi(id_transaksi.toString());
+            if(trs.cek_status_bayar()){
+                jButton1.setEnabled(false);
+                jButton2.setEnabled(true);
+                jButton3.setEnabled(false);
+            }else{
+                jButton1.setEnabled(true);
+                jButton2.setEnabled(true);
+                jButton3.setEnabled(true);
+            }
         }
         
     }//GEN-LAST:event_jTable2MouseClicked

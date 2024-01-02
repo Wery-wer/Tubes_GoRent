@@ -30,6 +30,7 @@ public class Homepage extends javax.swing.JPanel {
         sd.setarrMobil();
         sd.setarrMotor();
         sd.settabeltersedia();
+        sd.settabeltersewa();
         
         jTable1.setModel(tabeltersedia);
         jTable2.setModel(tabeltersewa);

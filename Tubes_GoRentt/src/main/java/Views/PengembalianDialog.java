@@ -4,11 +4,13 @@
  */
 package Views;
 
+import Data.ScreenData;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 import Model.Pembayaran;
 import Model.Pengembalian;
+import Model.Transaksi;
 import javax.swing.JOptionPane;
 /**
  *
@@ -17,10 +19,12 @@ import javax.swing.JOptionPane;
 public class PengembalianDialog extends javax.swing.JDialog {
     Pengembalian peng;
     String idValue;
+    Transaksi trs;
     String pengembalian;
     int idx;
     int denda;
-    String kembali = LocalDate.now().toString();
+    LocalDate kembalitgl = LocalDate.now();
+    ScreenData sd = new ScreenData();
 
     /**
      * Creates new form PengembalianDialog
@@ -30,7 +34,12 @@ public class PengembalianDialog extends javax.swing.JDialog {
         this.idValue = idValue;
         this.pengembalian = pengembalian;
         this.idx = idx;
+        this.trs = sd.getTransaksibyidkendaraan(this.idValue);
+        denda = kembalitgl.compareTo(trs.getTanggal_penyewaan())*100000;
         initComponents();
+        jLabel8.setText(Integer.toString(denda));
+        
+        
     }
 
     /**
@@ -44,7 +53,6 @@ public class PengembalianDialog extends javax.swing.JDialog {
 
         jLabel5 = new javax.swing.JLabel();
         jComboBox2 = new javax.swing.JComboBox<>();
-        jTextField2 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -52,6 +60,7 @@ public class PengembalianDialog extends javax.swing.JDialog {
         jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -61,12 +70,6 @@ public class PengembalianDialog extends javax.swing.JDialog {
         jComboBox2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox2ActionPerformed(evt);
-            }
-        });
-
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
             }
         });
 
@@ -85,21 +88,20 @@ public class PengembalianDialog extends javax.swing.JDialog {
 
         jLabel4.setText("Denda");
 
-        jLabel6.setText(kembali);
+        jLabel6.setText(kembalitgl.toString());
 
         jLabel7.setText(this.idValue);
+
+        jLabel8.setText("jLabel8");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(194, 194, 194)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(120, 120, 120)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
+                        .addGap(194, 194, 194)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
                             .addComponent(jLabel5)
@@ -108,18 +110,21 @@ public class PengembalianDialog extends javax.swing.JDialog {
                         .addGap(49, 49, 49)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
+                            .addComponent(jComboBox2, 0, 160, Short.MAX_VALUE)
                             .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(266, 266, 266)
+                        .addComponent(jLabel1)))
                 .addContainerGap(216, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(116, 116, 116)
+                .addGap(108, 108, 108)
                 .addComponent(jLabel1)
-                .addGap(46, 46, 46)
+                .addGap(54, 54, 54)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jLabel7))
@@ -130,14 +135,14 @@ public class PengembalianDialog extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel8))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(193, Short.MAX_VALUE))
+                .addContainerGap(199, Short.MAX_VALUE))
         );
 
         pack();
@@ -145,19 +150,36 @@ public class PengembalianDialog extends javax.swing.JDialog {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        try {
-            String denda_String = jTextField2.getText();
-            String jenisPembayaran = (String) jComboBox2.getSelectedItem();
-            denda = Integer.parseInt(denda_String);
-            LocalDate waktu_kembali = LocalDate.parse(kembali, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-            //Pembayaran pem = new Pembayaran();
-            //pem.setMetode_bayar(jenisPembayaran);
-
-            //peng = new Pengembalian(pem, waktu_kembali, denda, true);
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "Masukkan angka yang valid untuk denda", "Kesalahan", JOptionPane.ERROR_MESSAGE);
-        }
-
+//        try {
+//            String jenisPembayaran = (String) jComboBox2.getSelectedItem();
+//            denda = Integer.parseInt(denda_String);
+//            LocalDate waktu_kembali = LocalDate.parse(kembali, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+//            //Pembayaran pem = new Pembayaran();
+//            //pem.setMetode_bayar(jenisPembayaran);
+//
+//            //peng = new Pengembalian(pem, waktu_kembali, denda, true);
+//        } catch (NumberFormatException e) {
+//            JOptionPane.showMessageDialog(null, "Masukkan angka yang valid untuk denda", "Kesalahan", JOptionPane.ERROR_MESSAGE);
+//        }
+            
+            Pengembalian kembali = new Pengembalian(trs);
+            kembali.getPembayaran().setMetode_bayar(jComboBox2.getSelectedItem().toString());
+            kembali.getPembayaran().setTanggal_bayar(LocalDate.now());
+            trs.setPengembalian(kembali);
+            if(trs.getMobil() != null){
+                trs.getMobil().setKetersediaan(true);
+                sd.setarrMobil();
+                sd.setarrTransaksi();
+            }else{
+                trs.getMotor().setKetersediaan(true);
+                sd.setarrMotor();
+                sd.setarrTransaksi();
+            }
+            
+            dispose();
+            
+            
+            
 
 
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -165,10 +187,6 @@ public class PengembalianDialog extends javax.swing.JDialog {
     private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox2ActionPerformed
-
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -222,6 +240,6 @@ public class PengembalianDialog extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JLabel jLabel8;
     // End of variables declaration//GEN-END:variables
 }
