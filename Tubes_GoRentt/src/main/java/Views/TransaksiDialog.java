@@ -4,7 +4,8 @@
  */
 package Views;
 
-import Data.*;
+import Controller.ScreenData;
+import Controller.Save;
 import Model.*;
 import com.mycompany.tubes_gorentt.Main_Menu;
 import javax.swing.ComboBoxModel;

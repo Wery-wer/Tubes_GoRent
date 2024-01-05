@@ -4,8 +4,8 @@
  */
 package Views;
 
-import Data.Save;
-import Data.ScreenData;
+import Controller.Save;
+import Controller.ScreenData;
 import Model.Motor;
 import javax.swing.JOptionPane;
 
@@ -163,10 +163,6 @@ public class InputDataMotor extends javax.swing.JPanel {
             } else {
                 Motor m = new Motor(merek, harga_sewa , ketersediaan, id_kendaraan, transmisi);
                 m.addAsuransi();
-                sd.arrMotor.add(m);
-                sd.addtabeltersedia(m,null);
-                s.writemtr(sd.arrMotor);
-                m.insert_motor();
                 JOptionPane.showMessageDialog(null, "Data Berhasil Ditambahkan");
                 clearInput();
             }

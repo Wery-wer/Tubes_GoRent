@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Data;
+package Controller;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -35,7 +35,7 @@ public class JDBC {
             st = conn.createStatement();
             System.out.println("connected");
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null,""+e.getMessage(),"Connection Error",JOptionPane.WARNING_MESSAGE);
+            System.out.println(e.getMessage());
         }
     }
     

@@ -4,7 +4,7 @@
  */
 package Model;
 
-import Data.JDBC;
+import Controller.JDBC;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.sql.Date;

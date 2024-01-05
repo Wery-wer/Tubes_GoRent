@@ -4,7 +4,7 @@
  */
 package Model;
 
-import Data.JDBC;
+import Controller.JDBC;
 import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.logging.Level;

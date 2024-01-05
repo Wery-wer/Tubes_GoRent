@@ -4,7 +4,7 @@
  */
 package Screen;
 
-import Data.ScreenData;
+import Controller.ScreenData;
 import Model.Mobil;
 import java.util.ArrayList;
 

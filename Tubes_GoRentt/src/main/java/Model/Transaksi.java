@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Model;
-import Data.JDBC;
+import Controller.JDBC;
 import java.io.Serializable;
 import java.sql.Date;
 import java.sql.SQLException;

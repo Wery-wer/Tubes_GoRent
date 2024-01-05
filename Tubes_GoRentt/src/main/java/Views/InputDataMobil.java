@@ -4,8 +4,8 @@
  */
 package Views;
 
-import Data.Save;
-import Data.ScreenData;
+import Controller.Save;
+import Controller.ScreenData;
 import Model.Mobil;
 import Model.Motor;
 import javax.swing.JOptionPane;
@@ -187,10 +187,6 @@ public class InputDataMobil extends javax.swing.JPanel {
             } else {
                 Mobil m = new Mobil(kapasitas, merek, harga_sewa, ketersediaan, id_kendaraan, transmisi);
                 m.addAsuransi();
-                sd.arrMobil.add(m);
-                sd.addtabeltersedia(null,m);
-                s.writem(sd.arrMobil);
-                m.insert_mobil();
                 JOptionPane.showMessageDialog(null, "Data Berhasil Ditambahkan");
                 clearInput();
             }

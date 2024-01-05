@@ -5,8 +5,8 @@
  */
 package Screen;
 
-import Data.Save;
-import Data.ScreenData;
+import Controller.Save;
+import Controller.ScreenData;
 import Model.Mobil;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;

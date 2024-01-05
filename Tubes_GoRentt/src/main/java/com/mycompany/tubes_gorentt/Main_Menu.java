@@ -4,7 +4,7 @@
  */
 package com.mycompany.tubes_gorentt;
 
-import Data.ScreenData;
+import Controller.ScreenData;
 //import Screen.InputDataMobil_Panel;
 //import Screen.Transaksi_Panel;
 import Views.*;

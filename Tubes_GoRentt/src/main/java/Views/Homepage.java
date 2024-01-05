@@ -4,9 +4,10 @@
  */
 package Views;
 
-import Data.*;
-import static Data.ScreenData.tabeltersedia;
-import static Data.ScreenData.tabeltersewa;
+import Controller.JDBC;
+import Controller.ScreenData;
+import static Controller.ScreenData.tabeltersedia;
+import static Controller.ScreenData.tabeltersewa;
 import Model.Mobil;
 import Model.Motor;
 import com.mycompany.tubes_gorentt.*;
@@ -46,14 +47,7 @@ public class Homepage extends javax.swing.JPanel {
      */
     
     @SuppressWarnings("unchecked")
-    
-//    public void show(){
-//        int row = jTable1.getRowCount();
-//        for (int i = 0; i < row; i++){
-//            sd.tabeltersedia.removeRow(0);
-//        }
-//        for (int i = 0;i<arrMobil.size();i++)
-//    }
+
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -125,36 +119,6 @@ public class Homepage extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
     
-    public void show_tableTersedia(){
-        int row = jTable1.getRowCount();
-        for (int i = 0; i < row; i++){
-            sd.tabeltersedia.removeRow(0);
-        }
-        try{
-           JDBC db = new JDBC();
-           String sql = "SELECT * FROM `mobil` WHERE `ketersediaan` = 1";
-           ResultSet rs = db.getData(sql);
-           int i = 1;
-           while(rs.next()){
-               Mobil m = new Mobil(rs.getInt("kapasitas"),rs.getString("merek"),rs.getInt("harga"),true,rs.getString("id"),rs.getString("transmisi"));
-               String data[] = {String.valueOf(i), rs.getString("id"), "Mobil", rs.getString("merek"), rs.getString("transmisi"), rs.getString("kapasitas"), rs.getString("harga")};
-               sd.arrMobil.add(m);
-               sd.tabeltersedia.addRow(data);
-               i++;
-           }
-           sql = "SELECT * FROM `motor` WHERE `ketersediaan` = 1";
-           rs = db.getData(sql);
-           while(rs.next()){
-               Motor mtr = new Motor(rs.getString("merek"),rs.getInt("harga"),true,rs.getString("id"),rs.getString("transmisi"));
-               String data[] = {String.valueOf(i), rs.getString("id"), "Motor", rs.getString("merek"), rs.getString("transmisi"), "2", rs.getString("harga")};
-               sd.arrMotor.add(mtr);
-               sd.tabeltersedia.addRow(data);
-               i++;
-           }
-        } catch (SQLException e){
-            System.out.println(e);
-        }
-    }
     
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         // TODO add your handling code here:

@@ -3,7 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
 package Views;
-import Data.*;
+import Controller.ScreenData;
+import Controller.Save;
 import Model.*;
 import java.time.LocalDate;
 /**

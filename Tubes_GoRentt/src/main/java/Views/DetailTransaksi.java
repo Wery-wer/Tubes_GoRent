@@ -4,7 +4,7 @@
  */
 package Views;
 
-import Data.*;
+import Controller.ScreenData;
 import Model.*;
 import java.time.LocalDate;
 

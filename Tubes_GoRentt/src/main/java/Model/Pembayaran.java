@@ -4,10 +4,10 @@
  */
 package Model;
 
+import Controller.JDBC;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.sql.Date;
-import Data.*;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;

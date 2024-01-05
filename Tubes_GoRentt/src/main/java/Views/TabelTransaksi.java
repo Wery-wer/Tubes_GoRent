@@ -3,8 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package Views;
-import Data.*;
-import static Data.ScreenData.tabeltransaksi;
+import Controller.ScreenData;
+import static Controller.ScreenData.tabeltransaksi;
 import Model.*;
 import com.mycompany.tubes_gorentt.Main_Menu;
 /**

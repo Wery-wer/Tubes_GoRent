@@ -3,10 +3,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Model;
-import Data.*;
+import Controller.JDBC;
 
 import java.io.Serializable;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -16,6 +18,15 @@ public class Motor extends Kendaraan implements Asuransi,Serializable {
 
     public Motor(String merek, int harga_sewa, boolean ketersediaan, String id_kendaraan, String transmisi) {
         super(merek, harga_sewa, ketersediaan, id_kendaraan, transmisi);
+        JDBC db;
+        try {
+            db = new JDBC();
+            String sql = "INSERT INTO `motor` (`id`, `merek`, `harga`, `transmisi`, `ketersediaan`) VALUES ('"+getId_kendaraan()+"', '"+getMerek()+"', '"+getHarga_sewa()+"', '"+getTransmisi()+"',true)";
+            db.executequery(sql);
+        } catch (SQLException ex) {
+            Logger.getLogger(Motor.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
 
     @Override
@@ -27,18 +38,6 @@ public class Motor extends Kendaraan implements Asuransi,Serializable {
     public boolean equals(Object obj) {
       Motor s = (Motor)obj;
       return super.getId_kendaraan().equalsIgnoreCase(s.getId_kendaraan()) && super.getMerek().equalsIgnoreCase(s.getMerek());
-    }
-    
-    public void insert_motor() throws SQLException{
-        JDBC db = new JDBC();
-        String sql = "INSERT INTO `motor` (`id`, `merek`, `harga`, `transmisi`, `ketersediaan`) VALUES ('"+getId_kendaraan()+"', '"+getMerek()+"', '"+getHarga_sewa()+"', '"+getTransmisi()+"',true)";
-        db.executequery(sql);
-    }
-    
-    public void update_motor(int i) throws SQLException{
-        JDBC db = new JDBC();
-        String sql = "UPDATE `motor` SET `ketersediaan` = '"+!isKetersediaan()+"' WHERE `id` = '"+getId_kendaraan()+"'";
-        db.executequery(sql);
     }
     
     
