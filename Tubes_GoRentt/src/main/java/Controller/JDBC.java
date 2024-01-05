@@ -44,7 +44,7 @@ public class JDBC {
         try {
             st.executeUpdate(SQLString);
         } catch (Exception e){
-            JOptionPane.showMessageDialog(null,"Error :"+e.getMessage(),"Communication Error",JOptionPane.WARNING_MESSAGE); 
+            System.out.println(e.getMessage());
         }
     }
      
@@ -52,7 +52,7 @@ public class JDBC {
         try {
             rs = st.executeQuery(SQLString);
         } catch (Exception e){
-            JOptionPane.showMessageDialog(null,"Error  :"+e.getMessage(),"Communication Error", JOptionPane.WARNING_MESSAGE);
+            System.out.println(e.getMessage());
         }
         return rs;
     }

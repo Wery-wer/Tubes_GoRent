@@ -7,6 +7,7 @@ package Controller;
 import Model.Mobil;
 import Model.Motor;
 import Model.Pembayaran;
+import Model.Pengembalian;
 import Model.Penyewa;
 import Model.Transaksi;
 import java.sql.ResultSet;
@@ -79,7 +80,7 @@ public class ScreenData {
         JDBC db;
         try {
             db = new JDBC();
-            String sql = "SELECT * FROM `transaksi` INNER JOIN `penyewa` on penyewa.id = transaksi.penyewaid LEFT JOIN `pengembalian` on transaksi.pengembalianid = pengembalian.id LEFT JOIN `pembayaran` on transaksi.pembayaranid = pembayaran.id";
+            String sql = "SELECT * FROM `transaksi` LEFT JOIN `penyewa` on penyewa.id = transaksi.penyewaid LEFT JOIN `pengembalian` on transaksi.pengembalianid = pengembalian.id LEFT JOIN `pembayaran` on transaksi.pembayaranid = pembayaran.id";
             ResultSet rs = db.getData(sql);
             while(rs.next()){
                 Penyewa pnyw = new Penyewa(rs.getString("nama"),rs.getString("nomor_telepon"),rs.getString("alamat"));
@@ -87,16 +88,13 @@ public class ScreenData {
                     Mobil m = getMobil(rs.getString("mobilid"));
                     Transaksi trs = new Transaksi(rs.getString("id"),m.getId_kendaraan(),rs.getInt("lama_penyewaan"), pnyw, m, null);
                     trs.setTanggal_penyewaan(rs.getDate("tanggal_penyewaan"));
-//                    if (rs.getString("pengembalianid") != null){
-//                        //set pengembalian
-//                    }
+                    if (rs.getString("pengembalianid") != null){
+                        Pengembalian kmb = new Pengembalian(trs);
+                        kmb.getPembayaran().setTanggal_bayar(kmb.getTanggal_kembali());
+                        trs.setPengembalian(kmb);
+                    }
                     if (rs.getString("pembayaranid") != null){
                         Pembayaran pmb = new Pembayaran(rs.getString("id"),rs.getDate("tanggal_pembayaran"),rs.getBoolean("Status_bayar"),rs.getString("Metode_bayar"),rs.getInt("Jumlah_bayar"));
-//                        pmb.setId_pembayaran(rs.getString("id"));
-//                        pmb.setJumlah_bayar(rs.getInt("Jumlah_bayar"));
-//                        pmb.setMetode_bayar(rs.getString("Metode_bayar"));
-//                        pmb.setStatus_bayar(rs.getBoolean("Status_bayar"));
-//                        pmb.setTanggal_bayarfromdb(rs.getDate("tanggal_pembayaran"));
                         
                         trs.setPembayaran(pmb);
                     }
@@ -105,6 +103,15 @@ public class ScreenData {
                     Motor mtr = getMotor(rs.getString("motorid"));
                     Transaksi trs = new Transaksi(rs.getString("id"),mtr.getId_kendaraan(),rs.getInt("lama_penyewaan"), pnyw, null, mtr);
                     trs.setTanggal_penyewaan(rs.getDate("tanggal_penyewaan"));
+                    if (rs.getString("pengembalianid") != null){
+                        Pengembalian kmb = new Pengembalian(trs);
+                        trs.setPengembalian(kmb);
+                    }
+                    if (rs.getString("pembayaranid") != null){
+                        Pembayaran pmb = new Pembayaran(rs.getString("id"),rs.getDate("tanggal_pembayaran"),rs.getBoolean("Status_bayar"),rs.getString("Metode_bayar"),rs.getInt("Jumlah_bayar"));
+                        
+                        trs.setPembayaran(pmb);
+                    }
                     this.arrTransaksi.add(trs);
                     
                 }
@@ -163,9 +170,7 @@ public class ScreenData {
     });
             int idx = 0;
             for (int i = 0;i<arrTransaksi.size();i++) {
-                if(arrTransaksi.get(i).cek_status_bayar() && arrTransaksi.get(i).getPengembalian() != null){
-                    
-                
+                if(arrTransaksi.get(i).cek_status_bayar() && arrTransaksi.get(i).getPengembalian() == null){
                     if (arrTransaksi.get(i).getMobil() != null){
                         tabeltersewa.addRow(new Object[] {idx+1,arrTransaksi.get(i).getId_kendaraan(),"Mobil",arrTransaksi.get(i).getMobil().getMerek(),arrTransaksi.get(i).getTanggal_penyewaan()});
                         idx++;
@@ -177,7 +182,7 @@ public class ScreenData {
             } 
     }
     
-    
+        
     public void addtabeltersewa(Transaksi t) {
         if (t.getMobil() != null){
             tabeltersewa.addRow(new Object [] {tabeltersewa.getRowCount()+1,t.getMobil().getId_kendaraan(),"Mobil",t.getMobil().getMerek(),t.getTanggalPengembalian()});

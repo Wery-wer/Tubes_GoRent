@@ -5,6 +5,8 @@
 package Views;
 
 import Controller.ScreenData;
+import static Controller.ScreenData.tabeltersedia;
+import static Controller.ScreenData.tabeltersewa;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -25,15 +27,18 @@ public class PengembalianDialog extends javax.swing.JDialog {
     int denda;
     LocalDate kembalitgl = LocalDate.now();
     ScreenData sd = new ScreenData();
+    javax.swing.JTable jTable1, jTable2;
 
     /**
      * Creates new form PengembalianDialog
      */
-    public PengembalianDialog(java.awt.Frame parent, boolean modal,String idValue,String pengembalian,int idx) {
+    public PengembalianDialog(java.awt.Frame parent, boolean modal,String idValue,String pengembalian,int idx,javax.swing.JTable jTable1,javax.swing.JTable jTable2) {
         super(parent, modal);
         this.idValue = idValue;
         this.pengembalian = pengembalian;
         this.idx = idx;
+        this.jTable1 = jTable1;
+        this.jTable2 = jTable2;
         this.trs = sd.getTransaksibyidkendaraan(this.idValue);
         denda = kembalitgl.compareTo(trs.getTanggal_penyewaan())*100000;
         initComponents();
@@ -168,13 +173,16 @@ public class PengembalianDialog extends javax.swing.JDialog {
             trs.setPengembalian(kembali);
             if(trs.getMobil() != null){
                 trs.getMobil().setKetersediaan(true);
-                sd.setarrMobil();
-                sd.setarrTransaksi();
+                sd.setarrMobil(); 
             }else{
                 trs.getMotor().setKetersediaan(true);
                 sd.setarrMotor();
-                sd.setarrTransaksi();
             }
+            sd.setarrTransaksi();
+            sd.settabeltersedia();
+            sd.settabeltersewa();
+            jTable1.setModel(tabeltersedia);
+            jTable2.setModel(tabeltersewa);
             
             dispose();
             
@@ -218,7 +226,7 @@ public class PengembalianDialog extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                PengembalianDialog dialog = new PengembalianDialog(new javax.swing.JFrame(), true,"","",0);
+                PengembalianDialog dialog = new PengembalianDialog(new javax.swing.JFrame(), true,"","",0,null,null);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

@@ -215,23 +215,12 @@ public class TransaksiDialog extends javax.swing.JDialog {
             Motor mtr = sd.getMotor(id_value);
             Mobil mbl = null;
             Transaksi trs = new Transaksi(id_trans, id_value, lama_penyewaan, pnyw, mbl, mtr);
-            sd.arrMotor.get(sd.arrMotor.indexOf(mtr)).setKetersediaan(false);
-//            sv.writemtr(sd.arrMotor);
-//            sd.arrTransaksi.add(trs);
-//            sv.writetransaksi(sd.arrTransaksi);
-//            sd.addtabeltransaksi(trs);
-           //sd.tabeltersedia.removeRow(index);
             
         } else if(tipe_kendaraan.equals("Mobil")){
             Motor mtr = null;
             Mobil mbl = sd.getMobil(id_value);
-            sd.arrMobil.get(sd.arrMobil.indexOf(mbl)).setKetersediaan(false);
             Transaksi trs = new Transaksi(id_trans, id_value, lama_penyewaan, pnyw, mbl, mtr);
-//            sv.writem(sd.arrMobil);
-//            sd.arrTransaksi.add(trs);
-//            sv.writetransaksi(sd.arrTransaksi);
-//            sd.addtabeltransaksi(trs);
-            //sd.tabeltersedia.removeRow(index);
+
         }
         
         

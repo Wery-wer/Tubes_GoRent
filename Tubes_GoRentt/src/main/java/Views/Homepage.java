@@ -48,6 +48,15 @@ public class Homepage extends javax.swing.JPanel {
     
     @SuppressWarnings("unchecked")
 
+    public void show_tableTersedia(javax.swing.JTable jt1,javax.swing.JTable jt2){
+        sd.setarrMobil();
+        sd.setarrMotor();
+        sd.settabeltersedia();
+        sd.settabeltersewa();
+        jt1.setModel(tabeltersedia);
+        jt2.setModel(tabeltersewa);
+    }
+
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -142,7 +151,7 @@ public class Homepage extends javax.swing.JPanel {
             idValue = jTable2.getValueAt(selectedRow, 1);
             pengembalian = jTable2.getValueAt(selectedRow, 4);
         }
-        PengembalianDialog pgd = new PengembalianDialog(main, true,idValue.toString(),pengembalian.toString(),selectedRow);
+        PengembalianDialog pgd = new PengembalianDialog(main, true,idValue.toString(),pengembalian.toString(),selectedRow,jTable1,jTable2);
         pgd.setVisible(true);
     }//GEN-LAST:event_jTable2MouseClicked
 

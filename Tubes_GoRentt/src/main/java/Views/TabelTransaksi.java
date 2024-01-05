@@ -3,10 +3,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package Views;
+import Controller.JDBC;
 import Controller.ScreenData;
 import static Controller.ScreenData.tabeltransaksi;
 import Model.*;
 import com.mycompany.tubes_gorentt.Main_Menu;
+import java.sql.SQLException;
 /**
  *
  * @author User
@@ -166,9 +168,23 @@ public class TabelTransaksi extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            JDBC db = new JDBC();
+            Transaksi trs = sd.getTransaksi(id_transaksi.toString());
+            String del = "DELETE FROM transaksi WHERE id='"+trs.getId_transaksi()+"'";
+            db.executequery(del);
+            del = "DELETE FROM penyewa WHERE id='"+trs.getId_transaksi()+"_0"+"'";
+            db.executequery(del);
+            del = "DELETE FROM pembayaran WHERE id='"+trs.getPembayaran().getId_pembayaran()+"'";
+            db.executequery(del);
+            
+            tabeltransaksi.removeRow(selectedRow);
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }        // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
-    
+
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
