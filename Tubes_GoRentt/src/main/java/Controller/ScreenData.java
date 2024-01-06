@@ -34,7 +34,7 @@ public class ScreenData {
     });
     public static DefaultTableModel tabeltersewa = new DefaultTableModel(null,
     new String [] {
-        "No", "ID Kendaraan", "Tipe Kendaraan", "Merek", "Tanggal Pengembalian"
+        "No", "ID Transaksi","ID Kendaraan", "Tipe Kendaraan", "Merek", "Tanggal Pengembalian"
     });
     
      public static DefaultTableModel tabeltransaksi = new DefaultTableModel(null,
@@ -166,16 +166,16 @@ public class ScreenData {
     public void settabeltersewa(){
         tabeltersewa = new DefaultTableModel(null,
     new String [] {
-        "No", "ID Kendaraan", "Tipe Kendaraan", "Merek", "Tanggal Pengembalian"
+        "No", "ID Transaksi","ID Kendaraan", "Tipe Kendaraan", "Merek", "Tanggal Pengembalian"
     });
             int idx = 0;
             for (int i = 0;i<arrTransaksi.size();i++) {
                 if(arrTransaksi.get(i).cek_status_bayar() && arrTransaksi.get(i).getPengembalian() == null){
                     if (arrTransaksi.get(i).getMobil() != null){
-                        tabeltersewa.addRow(new Object[] {idx+1,arrTransaksi.get(i).getId_kendaraan(),"Mobil",arrTransaksi.get(i).getMobil().getMerek(),arrTransaksi.get(i).getTanggal_penyewaan()});
+                        tabeltersewa.addRow(new Object[] {idx+1,arrTransaksi.get(i).getId_transaksi(),arrTransaksi.get(i).getId_kendaraan(),"Mobil",arrTransaksi.get(i).getMobil().getMerek(),arrTransaksi.get(i).getTanggal_penyewaan()});
                         idx++;
                     }else if(arrTransaksi.get(i).getMotor() != null){
-                        tabeltersewa.addRow(new Object[] {idx+1,arrTransaksi.get(i).getId_kendaraan(),"Motor",arrTransaksi.get(i).getMotor().getMerek(),arrTransaksi.get(i).getTanggal_penyewaan()});
+                        tabeltersewa.addRow(new Object[] {idx+1,arrTransaksi.get(i).getId_transaksi(),arrTransaksi.get(i).getId_kendaraan(),"Motor",arrTransaksi.get(i).getMotor().getMerek(),arrTransaksi.get(i).getTanggal_penyewaan()});
                         idx++;
                     }
                 }

@@ -39,7 +39,8 @@ public class PengembalianDialog extends javax.swing.JDialog {
         this.idx = idx;
         this.jTable1 = jTable1;
         this.jTable2 = jTable2;
-        this.trs = sd.getTransaksibyidkendaraan(this.idValue);
+        this.trs = sd.getTransaksi(this.idValue);
+        System.out.println("");
         denda = kembalitgl.compareTo(trs.getTanggal_penyewaan())*100000;
         initComponents();
         jLabel8.setText(Integer.toString(denda));
